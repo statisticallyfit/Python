@@ -1,0 +1,285 @@
+{
+ "worksheets": [
+  {
+   "cells": [
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "from scipy import *\n",
+      "from scipy.stats import *\n",
+      "from sympy import *\n",
+      "init_printing()\n",
+      "x, y, z = symbols('x y z')"
+     ],
+     "language": "python",
+     "prompt_number": 1
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "#mu, sigma, n\n",
+      "samples = norm.rvs(loc=50, scale=100, size=150).astype(int) \n",
+      "param = norm.fit(samples) #distribution fitting"
+     ],
+     "language": "python",
+     "prompt_number": 4
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "def P(n, r):\n",
+      "    return factorial(n)/(factorial(n-r))\n",
+      "\n",
+      "def C(n, r):\n",
+      "    return P(n, r)/(factorial(r))"
+     ],
+     "language": "python",
+     "prompt_number": 3
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{3}{7}$$"
+       ],
+       "text": [
+        "3/7"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "3 * P(6, 3)/P(7, 4)"
+     ],
+     "language": "python",
+     "prompt_number": 6
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{5}{7}$$"
+       ],
+       "text": [
+        "5/7"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "5*P(6, 3)/P(7, 4)"
+     ],
+     "language": "python",
+     "prompt_number": 8
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{13}{42}$$"
+       ],
+       "text": [
+        "13\n??\n42"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "13*P(5, 2)/P(7, 4)"
+     ],
+     "language": "python",
+     "prompt_number": 11
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$56$$"
+       ],
+       "text": [
+        "56"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factorial(8)/(factorial(5)*factorial(3))"
+     ],
+     "language": "python",
+     "prompt_number": 12
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$20$$"
+       ],
+       "text": [
+        "20"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factorial(6)/(factorial(3)*factorial(3))"
+     ],
+     "language": "python",
+     "prompt_number": 13
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{1}{30240}$$"
+       ],
+       "text": [
+        "1/30240"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factorial(3)*2/factorial(9)"
+     ],
+     "language": "python",
+     "prompt_number": 14
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "# binom.cdf(x, n, p)"
+     ],
+     "language": "python",
+     "prompt_number": 36
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$0.24571447707$$"
+       ],
+       "text": [
+        "0.24571447707"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "1 - binom.cdf(2, 8, 7/32)"
+     ],
+     "language": "python",
+     "prompt_number": 35
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python",
+     "prompt_number": 33
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python",
+     "prompt_number": 33
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    }
+   ]
+  }
+ ],
+ "cells": [],
+ "metadata": {},
+ "nbformat": 3,
+ "nbformat_minor": 0
+}

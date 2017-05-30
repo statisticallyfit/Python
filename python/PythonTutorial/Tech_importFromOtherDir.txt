@@ -1,0 +1,11 @@
+How to import from another directory:
+context: trying to import Chaper 16_ClassesAndFunctions.py from notes into the
+Exercise16.1.py in the exercises dir:
+
+What do type at top of Exercise16.1.py
+
+
+import sys
+sys.path.append('../')
+from notes.Chapter16_ClassesAndFunctions import Time, printTime, isAfter, addTime, isEqualTime, normalize, intToTime, timeToInt, increment, isValidTime
+

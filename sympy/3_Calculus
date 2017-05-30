@@ -1,0 +1,1582 @@
+{
+ "worksheets": [
+  {
+   "cells": [
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "from sympy import *\n",
+      "from sympy.abc import *\n",
+      "init_printing()"
+     ],
+     "language": "python",
+     "prompt_number": 1
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "#import sympy\n",
+      "#dir(sympy.abc)"
+     ],
+     "language": "python",
+     "prompt_number": 83
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "x, y, z = symbols('x y z', positive=True)\n",
+      "T, A, B, O, R = symbols('T A B O R')\n",
+      "T = theta\n",
+      "A = alpha\n",
+      "B = beta\n",
+      "O = omicron\n",
+      "R = rho"
+     ],
+     "language": "python",
+     "prompt_number": 13
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$12 x^{2} y^{2} e^{x^{2} y^{3}}$$"
+       ],
+       "text": [
+        "           2  3\n    2  2  x ?y \n12?x ?y ??     "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "f = 4*exp(x**2*y**3)\n",
+      "f.diff(y)"
+     ],
+     "language": "python",
+     "prompt_number": 3
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$8 x y^{3} e^{x^{2} y^{3}}$$"
+       ],
+       "text": [
+        "         2  3\n     3  x ?y \n8?x?y ??     "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "f.diff(x)"
+     ],
+     "language": "python",
+     "prompt_number": 61
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\partial}{\\partial x}\\left(x^{3} \\log{\\left (\\frac{x}{y^{\\frac{3}{5}}} + 1 \\right )}\\right)$$"
+       ],
+       "text": [
+        "? ? 3    ? x      ??\n???x ?log????? + 1??\n?x?      ? 3/5    ??\n  ?      ?y       ??"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "df = Derivative(x**3*ln(1 + x*y**(Rational(-3, 5))), x)\n",
+      "df"
+     ],
+     "language": "python",
+     "prompt_number": 42
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{x^{3}}{y^{\\frac{3}{5}} \\left(\\frac{x}{y^{\\frac{3}{5}}} + 1\\right)} + 3 x^{2} \\log{\\left (\\frac{x}{y^{\\frac{3}{5}}} + 1 \\right )}$$"
+       ],
+       "text": [
+        "        3                           \n       x             2    ? x      ?\n??????????????? + 3?x ?log????? + 1?\n 3/5 ? x      ?           ? 3/5    ?\ny   ?????? + 1?           ?y       ?\n     ? 3/5    ?                     \n     ?y       ?                     "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "df.doit()"
+     ],
+     "language": "python",
+     "prompt_number": 43
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\partial}{\\partial y}\\left(\\frac{x^{2} y^{3}}{\\sqrt{x + y}}\\right)$$"
+       ],
+       "text": [
+        "  ?   2  3  ?\n? ?  x ?y   ?\n?????????????\n?y?  _______?\n  ??? x + y ?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "z = (x**2*y**3)*(x+y)**(Rational(-1, 2))\n",
+      "dz = Derivative(z, y)\n",
+      "dz"
+     ],
+     "language": "python",
+     "prompt_number": 49
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$- \\frac{x^{2} y^{3}}{2 \\left(x + y\\right)^{\\frac{3}{2}}} + \\frac{3 x^{2} y^{2}}{\\sqrt{x + y}}$$"
+       ],
+       "text": [
+        "      2  3           2  2 \n     x ?y         3?x ?y  \n- ???????????? + ?????????\n           3/2     _______\n  2?(x + y)      ?? x + y "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "zderiv = dz.doit()\n",
+      "zderiv"
+     ],
+     "language": "python",
+     "prompt_number": 51
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$- \\frac{x^{2} y^{3}}{2 x \\sqrt{x + y} + 2 y \\sqrt{x + y}} + \\frac{3 x^{2} y^{2}}{\\sqrt{x + y}}$$"
+       ],
+       "text": [
+        "               2  3                   2  2 \n              x ?y                 3?x ?y  \n- ????????????????????????????? + ?????????\n    ?    _______       _______?     _______\n  2??x??? x + y  + y??? x + y ?   ?? x + y "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand(zderiv)"
+     ],
+     "language": "python",
+     "prompt_number": 52
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{x^{2} y^{2} \\left(6 x + 5 y\\right)}{2 \\left(x + y\\right)^{\\frac{3}{2}}}$$"
+       ],
+       "text": [
+        " 2  2            \nx ?y ?(6?x + 5?y)\n?????????????????\n            3/2  \n   2?(x + y)     "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factor(zderiv)"
+     ],
+     "language": "python",
+     "prompt_number": 53
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{x^{2} y^{2} \\left(6 x + 5 y\\right)}{2 \\left(x + y\\right)^{\\frac{3}{2}}}$$"
+       ],
+       "text": [
+        " 2  2            \nx ?y ?(6?x + 5?y)\n?????????????????\n            3/2  \n   2?(x + y)     "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "simplify(zderiv)"
+     ],
+     "language": "python",
+     "prompt_number": 54
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\partial}{\\partial x}\\left(\\frac{x^{2} y^{3}}{\\sqrt{x + y}}\\right)$$"
+       ],
+       "text": [
+        "  ?   2  3  ?\n? ?  x ?y   ?\n?????????????\n?x?  _______?\n  ??? x + y ?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "dz = Derivative(z, x)\n",
+      "dz"
+     ],
+     "language": "python",
+     "prompt_number": 63
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$- \\frac{x^{2} y^{3}}{2 \\left(x + y\\right)^{\\frac{3}{2}}} + \\frac{2 x y^{3}}{\\sqrt{x + y}}$$"
+       ],
+       "text": [
+        "      2  3              3 \n     x ?y          2?x?y  \n- ???????????? + ?????????\n           3/2     _______\n  2?(x + y)      ?? x + y "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "zderiv = dz.doit()\n",
+      "zderiv"
+     ],
+     "language": "python",
+     "prompt_number": 66
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{x y^{3} \\left(3 x + 4 y\\right)}{2 \\left(x + y\\right)^{\\frac{3}{2}}}$$"
+       ],
+       "text": [
+        "   3            \nx?y ?(3?x + 4?y)\n????????????????\n           3/2  \n  2?(x + y)     "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factor(zderiv)"
+     ],
+     "language": "python",
+     "prompt_number": 67
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\partial}{\\partial x}\\left(\\frac{x y}{x^{2} + y^{2}}\\right)$$"
+       ],
+       "text": [
+        "? ?  x?y  ?\n???????????\n?x? 2    2?\n  ?x  + y ?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "z = (x*y)*(x**2+y**2)**(-1)\n",
+      "dzExpr = Derivative(z, x)\n",
+      "dzExpr"
+     ],
+     "language": "python",
+     "prompt_number": 93
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$- \\frac{2 x^{2} y}{\\left(x^{2} + y^{2}\\right)^{2}} + \\frac{y}{x^{2} + y^{2}}$$"
+       ],
+       "text": [
+        "       2              \n    2?x ?y        y   \n- ?????????? + ???????\n           2    2    2\n  ? 2    2?    x  + y \n  ?x  + y ?           "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "dzResult = dzExpr.doit()\n",
+      "dzResult"
+     ],
+     "language": "python",
+     "prompt_number": 74
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{y \\left(- x^{2} + y^{2}\\right)}{\\left(x^{2} + y^{2}\\right)^{2}}$$"
+       ],
+       "text": [
+        "  ?   2    2?\ny??- x  + y ?\n?????????????\n           2 \n  ? 2    2?  \n  ?x  + y ?  "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "simplify(dzResult)"
+     ],
+     "language": "python",
+     "prompt_number": 76
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$- \\frac{y}{\\left(x^{2} + y^{2}\\right)^{2}} \\left(x - y\\right) \\left(x + y\\right)$$"
+       ],
+       "text": [
+        "-y?(x - y)?(x + y) \n???????????????????\n              2    \n     ? 2    2?     \n     ?x  + y ?     "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factor(dzResult)"
+     ],
+     "language": "python",
+     "prompt_number": 77
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\partial}{\\partial \\beta}\\left(\\alpha e^{\\sqrt{15} \\sqrt{\\alpha \\beta}}\\right)$$"
+       ],
+       "text": [
+        "  ?     ____   _____?\n? ?   ?? 15 ??? ??? ?\n??????              ?\n??                   "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "z = A*exp(sqrt(15*A*B))\n",
+      "dzExpr = Derivative(z, B)\n",
+      "dzExpr"
+     ],
+     "language": "python",
+     "prompt_number": 126
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\sqrt{15} \\alpha \\sqrt{\\alpha \\beta}}{2 \\beta} e^{\\sqrt{15} \\sqrt{\\alpha \\beta}}$$"
+       ],
+       "text": [
+        "                    ____   _____\n  ____     _____  ?? 15 ??? ??? \n?? 15 ????? ??? ??              \n????????????????????????????????\n              2??               "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "dzResult = dzExpr.doit()\n",
+      "dzResult"
+     ],
+     "language": "python",
+     "prompt_number": 127
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\sqrt{15}}{2} \\sqrt{\\alpha \\beta} e^{\\sqrt{15} \\sqrt{\\alpha \\beta}} + e^{\\sqrt{15} \\sqrt{\\alpha \\beta}}$$"
+       ],
+       "text": [
+        "                  ____   _____                  \n  ____   _____  ?? 15 ??? ???       ____   _____\n?? 15 ??? ??? ??                  ?? 15 ??? ??? \n?????????????????????????????? + ?              \n              2                                 "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand(dzResult)"
+     ],
+     "language": "python",
+     "prompt_number": 125
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\partial}{\\partial x}\\left(\\sinh^{2}{\\left (x y^{2} \\right )} \\cosh{\\left (\\sqrt{x} \\right )}\\right)$$"
+       ],
+       "text": [
+        "? ?    2?   2?     ?  ___??\n???sinh ?x?y ??cosh??? x ??\n?x                         "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "z = cosh(sqrt(x))*(sinh(x*y**2))**2\n",
+      "dzExpr = Derivative(z, x)\n",
+      "dzExpr"
+     ],
+     "language": "python",
+     "prompt_number": 128
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$2 y^{2} \\sinh{\\left (x y^{2} \\right )} \\cosh{\\left (\\sqrt{x} \\right )} \\cosh{\\left (x y^{2} \\right )} + \\frac{\\sinh{\\left (\\sqrt{x} \\right )}}{2 \\sqrt{x}} \\sinh^{2}{\\left (x y^{2} \\right )}$$"
+       ],
+       "text": [
+        "                                             ?  ___?     2?   2?\n   2     ?   2?     ?  ___?     ?   2?   sinh??? x ??sinh ?x?y ?\n2?y ?sinh?x?y ??cosh??? x ??cosh?x?y ? + ???????????????????????\n                                                     ___        \n                                                 2??? x         "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "dzResult = dzExpr.doit()\n",
+      "dzResult"
+     ],
+     "language": "python",
+     "prompt_number": 129
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{1}{\\left(x + 1\\right) \\left(x + 2\\right)}$$"
+       ],
+       "text": [
+        "       1       \n???????????????\n(x + 1)?(x + 2)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = 1/((x+2)*(x+1))\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 2
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$- \\frac{1}{x + 2} + \\frac{1}{x + 1}$$"
+       ],
+       "text": [
+        "    1       1  \n- ????? + ?????\n  x + 2   x + 1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = apart(expr, x)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 4
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{1}{\\left(x + 1\\right) \\left(x + 2\\right)}$$"
+       ],
+       "text": [
+        "       1       \n???????????????\n(x + 1)?(x + 2)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "together(expr)"
+     ],
+     "language": "python",
+     "prompt_number": 5
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{1}{x y z} \\left(x y + x z + y z\\right)$$"
+       ],
+       "text": [
+        "x?y + x?z + y?z\n???????????????\n     x?y?z     "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "together(1/x + 1/y + 1/z)"
+     ],
+     "language": "python",
+     "prompt_number": 6
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$1 + \\frac{2}{x - 1}$$"
+       ],
+       "text": [
+        "      2  \n1 + ?????\n    x - 1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = apart((x+1)/(x-1), x)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 7
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{x + 1}{x - 1}$$"
+       ],
+       "text": [
+        "x + 1\n?????\nx - 1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "together(expr)"
+     ],
+     "language": "python",
+     "prompt_number": 8
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\lim_{x \\to 0}\\left(\\frac{1}{x} \\sin{\\left (x \\right )}\\right)$$"
+       ],
+       "text": [
+        "    sin(x)\nlim ??????\nx->0  x   "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "lim = Limit(sin(x)/x, x, 0)\n",
+      "lim"
+     ],
+     "language": "python",
+     "prompt_number": 39
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$1$$"
+       ],
+       "text": [
+        "1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "lim.doit()"
+     ],
+     "language": "python",
+     "prompt_number": 40
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "display_data",
+       "png": "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\nAAAASUVORK5CYII=\n",
+       "text": [
+        "<matplotlib.figure.Figure at 0x4f4dac8>"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "%matplotlib inline\n",
+      "from numpy import *\n",
+      "from pylab import *\n",
+      "\n",
+      "x = linspace(-5*pi, 5*pi, 200)  # domain of the function\n",
+      "f = sin(x)/x\n",
+      "\n",
+      "function = plot(x, f, color=\"blue\", linewidth=3, linestyle=\"-\")\n",
+      "\n",
+      "xAxis = axvline(x=0, color=\"black\", linewidth=1.2)\n",
+      "yAxis = axhline(y=0, color=\"black\", linewidth=1.2)\n",
+      "\n",
+      "axis([-5*pi, 5*pi, -0.5, 1.5])  # ranges of the graph\n",
+      "show()"
+     ],
+     "language": "python",
+     "prompt_number": 46
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\partial}{\\partial x}\\left(y e^{z} \\sin{\\left (x z \\right )}\\right)$$"
+       ],
+       "text": [
+        "? ?   z         ?\n???y?? ?sin(x?z)?\n?x               "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "w = y*exp(z)*sin(x*z)\n",
+      "dwdx = Derivative(w, x)\n",
+      "dwdx"
+     ],
+     "language": "python",
+     "prompt_number": 4
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$y z e^{z} \\cos{\\left (x z \\right )}$$"
+       ],
+       "text": [
+        "     z         \ny?z?? ?cos(x?z)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "dwdx.doit()"
+     ],
+     "language": "python",
+     "prompt_number": 5
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{pmatrix}e^{z} \\sin{\\left (x z \\right )}, & x y e^{z} \\cos{\\left (x z \\right )} + y e^{z} \\sin{\\left (x z \\right )}\\end{pmatrix}$$"
+       ],
+       "text": [
+        "? z                z               z         ?\n?? ?sin(x?z), x?y?? ?cos(x?z) + y?? ?sin(x?z)?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "dwdy = diff(w, y)\n",
+      "dwdz = diff(w, z)\n",
+      "dwdy.doit(), dwdz.doit()"
+     ],
+     "language": "python",
+     "prompt_number": 7
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "w = (x**2-y**2)/(z**2 + y**2)\n",
+      "dwdx = diff(w, x)\n",
+      "dwdy = diff(w, y)\n",
+      "dwdz = diff(w, z)"
+     ],
+     "language": "python",
+     "prompt_number": 9
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{2 x}{y^{2} + z^{2}}$$"
+       ],
+       "text": [
+        "  2?x  \n???????\n 2    2\ny  + z "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "dwdx"
+     ],
+     "language": "python",
+     "prompt_number": 10
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$- \\frac{2 y \\left(x^{2} + z^{2}\\right)}{\\left(y^{2} + z^{2}\\right)^{2}}$$"
+       ],
+       "text": [
+        "     ? 2    2? \n-2?y??x  + z ? \n???????????????\n            2  \n   ? 2    2?   \n   ?y  + z ?   "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factor(dwdy)"
+     ],
+     "language": "python",
+     "prompt_number": 13
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$- \\frac{2 z \\left(x^{2} - y^{2}\\right)}{\\left(y^{2} + z^{2}\\right)^{2}}$$"
+       ],
+       "text": [
+        "     ? 2    2? \n-2?z??x  - y ? \n???????????????\n            2  \n   ? 2    2?   \n   ?y  + z ?   "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "dwdz"
+     ],
+     "language": "python",
+     "prompt_number": 17
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "w = sqrt(x**2 + y**2 + z**2)\n",
+      "dwdx = diff(w, x)\n",
+      "dwdy = diff(w, y)\n",
+      "dwdz = diff(w, z)"
+     ],
+     "language": "python",
+     "prompt_number": 22
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{x}{\\sqrt{x^{2} + y^{2} + z^{2}}}$$"
+       ],
+       "text": [
+        "        x        \n?????????????????\n   ______________\n  ?  2    2    2 \n??  x  + y  + z  "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "dwdx"
+     ],
+     "language": "python",
+     "prompt_number": 19
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{y}{\\sqrt{x^{2} + y^{2} + z^{2}}}$$"
+       ],
+       "text": [
+        "        y        \n?????????????????\n   ______________\n  ?  2    2    2 \n??  x  + y  + z  "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "dwdy"
+     ],
+     "language": "python",
+     "prompt_number": 20
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{z}{\\sqrt{x^{2} + y^{2} + z^{2}}}$$"
+       ],
+       "text": [
+        "        z        \n?????????????????\n   ______________\n  ?  2    2    2 \n??  x  + y  + z  "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "dwdz"
+     ],
+     "language": "python",
+     "prompt_number": 21
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$-0.7071067811865475$$"
+       ],
+       "text": [
+        "-0.7071067811865475"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "f = lambdify(x, cos(x))\n",
+      "f(3*pi/4)"
+     ],
+     "language": "python",
+     "prompt_number": 24
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$4$$"
+       ],
+       "text": [
+        "4"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "f = lambdify(x, x**2)\n",
+      "f(2)"
+     ],
+     "language": "python",
+     "prompt_number": 25
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$-23.140692632779267$$"
+       ],
+       "text": [
+        "-23.140692632779267"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "f = lambdify(x, exp(x)*cos(x))\n",
+      "f(pi)"
+     ],
+     "language": "python",
+     "prompt_number": 29
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$e^{x} \\sin{\\left (x \\right )}$$"
+       ],
+       "text": [
+        " x       \n? ?sin(x)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "integrate(exp(x)*sin(x) + exp(x)*cos(x), x)"
+     ],
+     "language": "python",
+     "prompt_number": 33
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\sqrt{2} \\sqrt{\\pi}}{2}$$"
+       ],
+       "text": [
+        "  ___   ___\n?? 2 ??? ? \n???????????\n     2     "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "integrate(sin(x**2), (x, -oo, oo))"
+     ],
+     "language": "python",
+     "prompt_number": 34
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{bmatrix}- \\sqrt{2}, & \\sqrt{2}\\end{bmatrix}$$"
+       ],
+       "text": [
+        "?   ___    ___?\n?-?? 2 , ?? 2 ?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "solve(x**2 - 2, x)"
+     ],
+     "language": "python",
+     "prompt_number": 36
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\cos{\\left (x \\right )}$$"
+       ],
+       "text": [
+        "cos(x)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "diff(sin(x), x)"
+     ],
+     "language": "python",
+     "prompt_number": 38
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\tan^{2}{\\left (x \\right )} + 1$$"
+       ],
+       "text": [
+        "   2       \ntan (x) + 1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "diff(tan(x), x)"
+     ],
+     "language": "python",
+     "prompt_number": 46
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\tan^{2}{\\left (x \\right )} + 1$$"
+       ],
+       "text": [
+        "   2       \ntan (x) + 1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "limit((tan(x+y) - tan(x))/y, y, 0)"
+     ],
+     "language": "python",
+     "prompt_number": 47
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$32 \\cos{\\left (2 x \\right )}$$"
+       ],
+       "text": [
+        "32?cos(2?x)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# higher derivatives\n",
+      "diff(sin(2*x), x, 5)"
+     ],
+     "language": "python",
+     "prompt_number": 59
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{bmatrix}\\cos{\\left (x \\right )}, & - \\sin{\\left (x \\right )}, & - \\cos{\\left (x \\right )}, & \\sin{\\left (x \\right )}, & \\cos{\\left (x \\right )}, & - \\sin{\\left (x \\right )}\\end{bmatrix}$$"
+       ],
+       "text": [
+        "[cos(x), -sin(x), -cos(x), sin(x), cos(x), -sin(x)]"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "def higherDerivatives(function, variable, list):\n",
+      "    results = []\n",
+      "    for i in list:\n",
+      "        results.append(diff(function, variable, i))\n",
+      "    return results\n",
+      "\n",
+      "higherDerivatives(sin(x), x, [1, 2, 3, 4, 5, 6])"
+     ],
+     "language": "python",
+     "prompt_number": 58
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$1 - \\frac{x^{2}}{2} + \\frac{x^{4}}{24} - \\frac{x^{6}}{720} + \\frac{x^{8}}{40320} - \\frac{x^{10}}{3628800} + \\mathcal{O}\\left(x^{12}\\right)$$"
+       ],
+       "text": [
+        "     2    4     6      8       10           \n    x    x     x      x       x        ? 12?\n1 - ?? + ?? - ??? + ????? - ??????? + O?x  ?\n    2    24   720   40320   3628800         "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Series expansion\n",
+      "cos(x).series(x, 0, 12) # variable, point, order"
+     ],
+     "language": "python",
+     "prompt_number": 65
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x - \\frac{x^{3}}{6} + \\frac{x^{5}}{120} - \\frac{x^{7}}{5040} + \\frac{x^{9}}{362880} - \\frac{x^{11}}{39916800} + \\mathcal{O}\\left(x^{13}\\right)$$"
+       ],
+       "text": [
+        "     3     5     7       9        11            \n    x     x     x       x        x         ? 13?\nx - ?? + ??? - ???? + ?????? - ???????? + O?x  ?\n    6    120   5040   362880   39916800         "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "sin(x).series(x, 0, 13)"
+     ],
+     "language": "python",
+     "prompt_number": 68
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x + \\frac{x^{3}}{3} + \\frac{2 x^{5}}{15} + \\frac{17 x^{7}}{315} + \\frac{62 x^{9}}{2835} + \\mathcal{O}\\left(x^{10}\\right)$$"
+       ],
+       "text": [
+        "     3      5       7       9         \n    x    2?x    17?x    62?x     ? 10?\nx + ?? + ???? + ????? + ????? + O?x  ?\n    3     15     315     2835         "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "tan(x).series(x, 0, 10)"
+     ],
+     "language": "python",
+     "prompt_number": 69
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$1 + x + \\frac{x^{2}}{2} + \\frac{x^{3}}{6} + \\frac{x^{4}}{24} + \\frac{x^{5}}{120} + \\frac{x^{6}}{720} + \\frac{x^{7}}{5040} + \\frac{x^{8}}{40320} + \\frac{x^{9}}{362880} + \\mathcal{O}\\left(x^{10}\\right)$$"
+       ],
+       "text": [
+        "         2    3    4     5     6     7       8       9           \n        x    x    x     x     x     x       x       x       ? 10?\n1 + x + ?? + ?? + ?? + ??? + ??? + ???? + ????? + ?????? + O?x  ?\n        2    6    24   120   720   5040   40320   362880         "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "exp(x).series(x, 0, 10)"
+     ],
+     "language": "python",
+     "prompt_number": 70
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x - \\frac{x^{2}}{2} + \\frac{x^{3}}{3} - \\frac{x^{4}}{4} + \\frac{x^{5}}{5} - \\frac{x^{6}}{6} + \\frac{x^{7}}{7} - \\frac{x^{8}}{8} + \\frac{x^{9}}{9} + \\mathcal{O}\\left(x^{10}\\right)$$"
+       ],
+       "text": [
+        "     2    3    4    5    6    7    8    9         \n    x    x    x    x    x    x    x    x     ? 10?\nx - ?? + ?? - ?? + ?? - ?? + ?? - ?? + ?? + O?x  ?\n    2    3    4    5    6    7    8    9          "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "logSeries = ln(x).series(x, 1, 10)\n",
+      "logSeries"
+     ],
+     "language": "python",
+     "prompt_number": 75
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{x^{2}}{2} - \\frac{x^{3}}{6} + \\frac{x^{4}}{12} - \\frac{x^{5}}{20} + \\frac{x^{6}}{30} - \\frac{x^{7}}{42} + \\frac{x^{8}}{56} - \\frac{x^{9}}{72} + \\frac{x^{10}}{90} + \\mathcal{O}\\left(x^{11}\\right)$$"
+       ],
+       "text": [
+        " 2    3    4    5    6    7    8    9    10         \nx    x    x    x    x    x    x    x    x      ? 11?\n?? - ?? + ?? - ?? + ?? - ?? + ?? - ?? + ??? + O?x  ?\n2    6    12   20   30   42   56   72    90         "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "integrate(logSeries, x)"
+     ],
+     "language": "python",
+     "prompt_number": 76
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x + \\frac{x^{3}}{6} + \\frac{x^{5}}{120} + \\frac{x^{7}}{5040} + \\frac{x^{9}}{362880} + \\mathcal{O}\\left(x^{10}\\right)$$"
+       ],
+       "text": [
+        "     3     5     7       9           \n    x     x     x       x       ? 10?\nx + ?? + ??? + ???? + ?????? + O?x  ?\n    6    120   5040   362880         "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "sinh(x).series(x, 0, 10)"
+     ],
+     "language": "python",
+     "prompt_number": 87
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$1 + \\frac{x^{2}}{2} + \\frac{x^{4}}{24} + \\frac{x^{6}}{720} + \\frac{x^{8}}{40320} + \\mathcal{O}\\left(x^{10}\\right)$$"
+       ],
+       "text": [
+        "     2    4     6      8          \n    x    x     x      x      ? 10?\n1 + ?? + ?? + ??? + ????? + O?x  ?\n    2    24   720   40320         "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "cosh(x).series(x, 0, 10)"
+     ],
+     "language": "python",
+     "prompt_number": 91
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{pmatrix}\\int 6 x^{5}\\, dx, & x^{6}\\end{pmatrix}$$"
+       ],
+       "text": [
+        "??            ?\n??    5      6?\n?? 6?x  dx, x ?\n??            ?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "integral = Integral(6*x**5, x)\n",
+      "integral, integral.doit()"
+     ],
+     "language": "python",
+     "prompt_number": 81
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{pmatrix}\\int \\log{\\left (x \\right )}\\, dx, & x \\log{\\left (x \\right )} - x\\end{pmatrix}$$"
+       ],
+       "text": [
+        "??                        ?\n?? log(x) dx, x?log(x) - x?\n??                        ?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = Integral(ln(x), x)\n",
+      "expr, expr.doit()"
+     ],
+     "language": "python",
+     "prompt_number": 84
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{pmatrix}\\int 2 x + \\sinh{\\left (x \\right )}\\, dx, & x^{2} + \\cosh{\\left (x \\right )}\\end{pmatrix}$$"
+       ],
+       "text": [
+        "??                      2          ?\n?? (2?x + sinh(x)) dx, x  + cosh(x)?\n??                                 ?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = Integral(2*x + sinh(x), x)\n",
+      "expr, expr.doit()"
+     ],
+     "language": "python",
+     "prompt_number": 86
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\sqrt{\\pi}}{4} \\operatorname{erf}^{2}{\\left (x \\right )}$$"
+       ],
+       "text": [
+        "  ___    2   \n?? ? ?erf (x)\n?????????????\n      4      "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "integrate(exp(-x**2)*erf(x), x)"
+     ],
+     "language": "python",
+     "prompt_number": 92
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{pmatrix}\\int_{-1}^{3} x^{3}\\, dx, & 20\\end{pmatrix}$$"
+       ],
+       "text": [
+        "?3           ?\n??           ?\n??   3       ?\n??  x  dx, 20?\n??           ?\n?-1          ?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "integral = Integral(x**3, (x, -1, 3))\n",
+      "integral, integral.doit()"
+     ],
+     "language": "python",
+     "prompt_number": 5
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{pmatrix}\\int \\frac{1}{x \\left(x^{2} - 1\\right)}\\, dx, & \\log{\\left (\\frac{1}{x} \\sqrt{x^{2} - 1} \\right )}\\end{pmatrix}$$"
+       ],
+       "text": [
+        "?                    ?   ________??\n??                   ?  ?  2     ??\n??     1             ???  x  - 1 ??\n?? ?????????? dx, log??????????????\n??   ? 2    ?        ?     x     ??\n?? x??x  - 1?                     ?\n??                                ?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "x, y = symbols('x y', positive=True)\n",
+      "n = symbols('n', real=True)\n",
+      "integral = Integral(1/(x*(x**2-1)), x)\n",
+      "integral, logcombine(integral.doit(), force=True)\n",
+      "# must force true because x**2 - 1 isn't positive always"
+     ],
+     "language": "python",
+     "prompt_number": 28
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{x^{5} - 4 x^{3} + 1}{x^{3} - 4 x}$$"
+       ],
+       "text": [
+        " 5      3    \nx  - 4?x  + 1\n?????????????\n    3        \n   x  - 4?x  "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "f = (x**5 - 4*x**3 + 1)/(x**3-4*x)\n",
+      "f"
+     ],
+     "language": "python",
+     "prompt_number": 29
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\int x^{2} + \\frac{1}{8 x + 16} + \\frac{1}{8 x - 16} - \\frac{1}{4 x}\\, dx$$"
+       ],
+       "text": [
+        "?                                      \n? ? 2       1           1        1 ?   \n? ?x  + ????????? + ????????? - ???? dx\n? ?     8?(x + 2)   8?(x - 2)   4?x?   \n?                                      "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "f = apart(f)\n",
+      "integral = Integral(f, x)\n",
+      "integral"
+     ],
+     "language": "python",
+     "prompt_number": 31
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{x^{3}}{3} - \\frac{1}{4} \\log{\\left (x \\right )} + \\frac{1}{8} \\log{\\left (x^{2} - 4 \\right )}$$"
+       ],
+       "text": [
+        " 3               ? 2    ?\nx    log(x)   log?x  - 4?\n?? - ?????? + ???????????\n3      4           8     "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "result = integral.doit()\n",
+      "result"
+     ],
+     "language": "python",
+     "prompt_number": 33
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{x^{3}}{3} + \\log{\\left (\\frac{1}{\\sqrt[4]{x}} \\sqrt[8]{x^{2} - 4} \\right )}$$"
+       ],
+       "text": [
+        "        ?   ________?\n 3      ?8 ?  2     ?\nx       ???  x  - 4 ?\n?? +    ?????????????\n3       ?   4 ___   ?\n     log?   ?? x    ?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "logcombine(result, force=True)"
+     ],
+     "language": "python",
+     "prompt_number": 37
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{1}{\\sqrt[4]{x}} \\sqrt[8]{x^{2} - 4}$$"
+       ],
+       "text": [
+        "   ________\n8 ?  2     \n??  x  - 4 \n???????????\n   4 ___   \n   ?? x    "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = (x**2-4)**Rational(1, 8)/x**Rational(1, 4)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 39
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python",
+     "prompt_number": 45
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    }
+   ]
+  }
+ ],
+ "cells": [],
+ "metadata": {},
+ "nbformat": 3,
+ "nbformat_minor": 0
+}

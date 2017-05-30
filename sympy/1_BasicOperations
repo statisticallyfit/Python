@@ -1,0 +1,875 @@
+{
+ "worksheets": [
+  {
+   "cells": [
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "from sympy import *\n",
+      "init_printing()\n"
+     ],
+     "language": "python",
+     "prompt_number": 2
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "x y z\n",
+       "text": [
+        "x y z\n"
+       ]
+      }
+     ],
+     "input": [
+      "# create variables\n",
+      "x, y, z = symbols(\"x y z\")\n",
+      "\n",
+      "print(x, y, z)"
+     ],
+     "language": "python",
+     "prompt_number": 4
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\cos{\\left (y \\right )} + 1$$"
+       ],
+       "text": [
+        "cos(y) + 1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "### Substitution\n",
+      "\n",
+      "# Example \n",
+      "expr = cos(x) + 1\n",
+      "\n",
+      "expr.subs(x, y) # substitute x for y"
+     ],
+     "language": "python",
+     "prompt_number": 3
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$2$$"
+       ],
+       "text": [
+        "2"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr.subs(x, 0)"
+     ],
+     "language": "python",
+     "prompt_number": 4
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{y}$$"
+       ],
+       "text": [
+        " y\nx "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Example \n",
+      "\n",
+      "expr = x**y\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 5
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{x^{y}}$$"
+       ],
+       "text": [
+        " ? y?\n ?x ?\nx    "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = expr.subs(y, x**y)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 10
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{x^{x^{y}}}$$"
+       ],
+       "text": [
+        " ? ? y??\n ? ?x ??\n ?x    ?\nx       "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = expr.subs(y, x**y)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 11
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{x^{x^{x}}}$$"
+       ],
+       "text": [
+        " ? ? x??\n ? ?x ??\n ?x    ?\nx       "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = expr.subs(y, x)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 12
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\sin{\\left (2 x \\right )} + \\cos{\\left (2 x \\right )}$$"
+       ],
+       "text": [
+        "sin(2?x) + cos(2?x)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Example performing precise simplification\n",
+      "\n",
+      "expr = sin(2*x) + cos(2*x)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 13
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$2 \\sin{\\left (x \\right )} \\cos{\\left (x \\right )} + 2 \\cos^{2}{\\left (x \\right )} - 1$$"
+       ],
+       "text": [
+        "                       2       \n2?sin(x)?cos(x) + 2?cos (x) - 1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_trig(expr) # not goal"
+     ],
+     "language": "python",
+     "prompt_number": 9
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$2 \\sin{\\left (x \\right )} \\cos{\\left (x \\right )} + \\cos{\\left (2 x \\right )}$$"
+       ],
+       "text": [
+        "2?sin(x)?cos(x) + cos(2?x)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr.subs(sin(2*x), 2*sin(x)*cos(x)) #goal"
+     ],
+     "language": "python",
+     "prompt_number": 56
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "## NOTE: sympy objects are immutable. No function changes them in-place"
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{3} + 4 x y - z$$"
+       ],
+       "text": [
+        " 3            \nx  + 4?x?y - z"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Example \n",
+      "\n",
+      "expr = x**3 + 4*x*y - z\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 10
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$40$$"
+       ],
+       "text": [
+        "40"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr.subs([(x, 2), (y, 4), (z, 0)])"
+     ],
+     "language": "python",
+     "prompt_number": 11
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{4} - 4 x^{3} - 2 x + 4 y^{2} + 3$$"
+       ],
+       "text": [
+        " 4      3            2    \nx  - 4?x  - 2?x + 4?y  + 3"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Example\n",
+      "expr = x**4 - 4*x**3 + 4*y**2 - 2*x + 3\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 17
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$- 4 x^{3} - 2 x + y^{4} + 4 y^{2} + 3$$"
+       ],
+       "text": [
+        "     3          4      2    \n- 4?x  - 2?x + y  + 4?y  + 3"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "replacements = []\n",
+      "for i in range(5):\n",
+      "    if i % 2 == 0:\n",
+      "        replacements = [(x**i, y**i)]\n",
+      "expr = expr.subs(replacements)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 18
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{2} + 3 x - \\frac{1}{2}$$"
+       ],
+       "text": [
+        " 2         1\nx  + 3?x - ?\n           2"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Converting strings to SymPy expressions\n",
+      "\n",
+      "strExpr = \"x**2 + 3*x - 1/2\"\n",
+      "expr = sympify(strExpr)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 19
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{19}{2}$$"
+       ],
+       "text": [
+        "19/2"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr.subs(x, 2)"
+     ],
+     "language": "python",
+     "prompt_number": 42
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$2 \\sqrt{2}$$"
+       ],
+       "text": [
+        "    ___\n2??? 2 "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Exact answer\n",
+      "\n",
+      "expr = sqrt(8)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 21
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$2.828$$"
+       ],
+       "text": [
+        "2.828"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Numerical answer with evalf()\n",
+      "\n",
+      "expr.evalf(4)"
+     ],
+     "language": "python",
+     "prompt_number": 25
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\pi$$"
+       ],
+       "text": [
+        "?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "pi"
+     ],
+     "language": "python",
+     "prompt_number": 23
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$3.141592653589793238462643383279502884197169399375105820974944592307816406286208998628034825342117068$$"
+       ],
+       "text": [
+        "3.1415926535897932384626433832795028841971693993751058209749445923078164062862\n08998628034825342117068"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "pi.evalf(100)"
+     ],
+     "language": "python",
+     "prompt_number": 26
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$0.707106781186548$$"
+       ],
+       "text": [
+        "0.707106781186548"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Evaluate expression numerically\n",
+      "# 1) \n",
+      "expr = cos(2*x)\n",
+      "expr.subs(x, pi/8).evalf() # sqrt(2)/2"
+     ],
+     "language": "python",
+     "prompt_number": 28
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$0.707106781186548$$"
+       ],
+       "text": [
+        "0.707106781186548"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "#2) subs flag\n",
+      "expr = cos(2*x)\n",
+      "expr.evalf(subs={x : pi/8})"
+     ],
+     "language": "python",
+     "prompt_number": 29
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$1.0$$"
+       ],
+       "text": [
+        "1.00000000000000"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Removing roundoff errors\n",
+      "x = 10\n",
+      "one = cos(x)**2 + sin(x)**2\n",
+      "one.evalf()"
+     ],
+     "language": "python",
+     "prompt_number": 32
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$-1.0 \\cdot 10^{-125}$$"
+       ],
+       "text": [
+        "-0.e-125"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "#has roundoff error\n",
+      "(one - 1).evalf()"
+     ],
+     "language": "python",
+     "prompt_number": 34
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$0$$"
+       ],
+       "text": [
+        "0"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# chop\n",
+      "(one - 1).evalf(chop=True)"
+     ],
+     "language": "python",
+     "prompt_number": 35
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$e^{\\frac{x}{x + 1}}$$"
+       ],
+       "text": [
+        "   x  \n ?????\n x + 1\n?     "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "f = exp(x/(1+x))\n",
+      "f"
+     ],
+     "language": "python",
+     "prompt_number": 8
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\left(- \\frac{x}{\\left(x + 1\\right)^{2}} + \\frac{1}{x + 1}\\right) e^{\\frac{x}{x + 1}}$$"
+       ],
+       "text": [
+        "                        x  \n                      ?????\n?     x         1  ?  x + 1\n?- ???????? + ????????     \n?         2   x + 1?       \n?  (x + 1)         ?       "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "#derivative\n",
+      "df = diff(f, x)\n",
+      "df"
+     ],
+     "language": "python",
+     "prompt_number": 9
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$1.0$$"
+       ],
+       "text": [
+        "1.0"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# lambdify creates function handle to use to evaluate numerically\n",
+      "dF = lambdify(x, df)\n",
+      "dF(0)"
+     ],
+     "language": "python",
+     "prompt_number": 10
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{595882530372511}{281474976710656}$$"
+       ],
+       "text": [
+        "595882530372511\n???????????????\n281474976710656"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "F = lambdify(x, f)\n",
+      "Rational(F(3))"
+     ],
+     "language": "python",
+     "prompt_number": 12
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{2} + 3 x - \\frac{1}{2}$$"
+       ],
+       "text": [
+        " 2         1\nx  + 3?x - ?\n           2"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "strExpr = \"x**2 + 3*x - 1/2\"\n",
+      "expr = sympify(strExpr)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 6
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{79}{2}$$"
+       ],
+       "text": [
+        "79/2"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "exprLambda = lambdify(x, sympify(strExpr))\n",
+      "Rational(exprLambda(5))"
+     ],
+     "language": "python",
+     "prompt_number": 7
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([ 0.        ,  0.84147098,  0.90929743,  0.14112001, -0.7568025 ,\n       -0.95892427, -0.2794155 ,  0.6569866 ,  0.98935825,  0.41211849])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "import numpy as np\n",
+      "a = np.arange(10)\n",
+      "expr = sin(x)\n",
+      "f = lambdify(x, expr, \"numpy\")\n",
+      "f(a)"
+     ],
+     "language": "python",
+     "prompt_number": 6
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([  0,   1,   4,   9,  16,  25,  36,  49,  64,  81, 100, 121, 144,\n       169, 196, 225, 256, 289, 324, 361, 400])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "from numpy import * \n",
+      "a = arange(21)\n",
+      "expr = x**2\n",
+      "f = lambdify(x, expr) # can add \"numpy\" library like in \"math\" below...\n",
+      "f(a)"
+     ],
+     "language": "python",
+     "prompt_number": 7
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$16$$"
+       ],
+       "text": [
+        "16"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "f = lambdify(x, expr, \"math\") # it seems adding library is optional?\n",
+      "f(4)"
+     ],
+     "language": "python",
+     "prompt_number": 8
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$0.7071067811865475$$"
+       ],
+       "text": [
+        "0.7071067811865475"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = sin(x)\n",
+      "f = lambdify(x, expr)\n",
+      "f(pi/4)"
+     ],
+     "language": "python",
+     "prompt_number": 21
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\sqrt{3}$$"
+       ],
+       "text": [
+        "  ___\n?? 3 "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# To use lambdify with custom function it knows nothing about, \n",
+      "\n",
+      "\n",
+      "# pass dictionary of\n",
+      "# sympyname:numericalFunctionName pairs\n",
+      "\n",
+      "def mysin(x):\n",
+      "    return 2 * sin(x)\n",
+      "\n",
+      "f = lambdify(x, sin(x), {\"sin\":mysin})\n",
+      "\n",
+      "f(2*pi/3)"
+     ],
+     "language": "python",
+     "prompt_number": 6
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{bmatrix}\\begin{pmatrix}\\frac{\\sqrt{3}}{3}, & 1, & \\sqrt{3}, & \\tilde{\\infty}, & - \\sqrt{3}, & -1, & - \\frac{\\sqrt{3}}{3}\\end{pmatrix}\\end{bmatrix}$$"
+       ],
+       "text": [
+        "??  ___                                ___ ??\n???? 3        ___          ___      -?? 3  ??\n???????, 1, ?? 3 , zoo, -?? 3 , -1, ?????????\n??  3                                  3   ??"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "def guessTrig(x):\n",
+      "    return tan(x)\n",
+      "\n",
+      "f = lambdify(x, tan(x), {\"tan\":guessTrig})\n",
+      "solutions = [(f(pi/6), f(pi/4), f(pi/3), f(pi/2), f(2*pi/3), f(3*pi/4), f(5*pi/6))]\n",
+      "solutions"
+     ],
+     "language": "python",
+     "prompt_number": 19
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    }
+   ]
+  }
+ ],
+ "cells": [],
+ "metadata": {},
+ "nbformat": 3,
+ "nbformat_minor": 0
+}

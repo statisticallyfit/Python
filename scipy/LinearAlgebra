@@ -1,0 +1,2109 @@
+{
+ "worksheets": [
+  {
+   "cells": [
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "from numpy import *\n",
+      "from sympy import *\n",
+      "from fractions import *\n",
+      "init_printing()\n",
+      "from scipy.linalg import *"
+     ],
+     "language": "python",
+     "prompt_number": 1
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "(9+13j)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "u = array([1-2j, 3+1j])\n",
+      "v = array([4+2j, 5-6j])\n",
+      "# dot product u*v =\n",
+      "vdot(v, u)"
+     ],
+     "language": "python",
+     "prompt_number": 2
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "(9-13j)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# dot product v*u =\n",
+      "vdot(u, v)"
+     ],
+     "language": "python",
+     "prompt_number": 3
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "(20+35j)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "u = array([3-2j, 4j, 1+6j])\n",
+      "v = array([5+1j, 2-3j, 7+2j])\n",
+      "# u*v\n",
+      "vdot(v, u)"
+     ],
+     "language": "python",
+     "prompt_number": 40
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "(20-35j)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "vdot(u, v) # dot for v *u"
+     ],
+     "language": "python",
+     "prompt_number": 5
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([ 1.-2.j,  3.+4.j])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "a = array([1+2j, 3-4j])\n",
+      "a.conjugate()"
+     ],
+     "language": "python",
+     "prompt_number": 6
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([ 8.-1.j, -1.-1.j])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# ADD\n",
+      "u = array([7-2j, 2+5j])\n",
+      "v = array([1+1j, -3-6j])\n",
+      "add(u, v)"
+     ],
+     "language": "python",
+     "prompt_number": 55
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([  4.+14.j, -10. +4.j])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "2j*u"
+     ],
+     "language": "python",
+     "prompt_number": 56
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([  4. +2.j, -15.-15.j])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "(3-1j)*v"
+     ],
+     "language": "python",
+     "prompt_number": 29
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "(-31-12j)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "vdot(v, u)"
+     ],
+     "language": "python",
+     "prompt_number": 30
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{pmatrix}9.05538513814, & 6.8556546004\\end{pmatrix}$$"
+       ],
+       "text": [
+        "(9.05538513814, 6.8556546004)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "norm(u), norm(v)"
+     ],
+     "language": "python",
+     "prompt_number": 63
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([ 7.28010989,  5.38516481])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "u = array([7-2j, 2+5j])\n",
+      "v = array([1+1j, -3-6j])\n",
+      "abs(u)"
+     ],
+     "language": "python",
+     "prompt_number": 41
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([  9,  13, -12])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# CROSS PRODUCT\n",
+      "\n",
+      "v = array([1, 3, 4])\n",
+      "w = array([2, -6, -5])\n",
+      "cross(v, w)"
+     ],
+     "language": "python",
+     "prompt_number": 38
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$8.0$$"
+       ],
+       "text": [
+        "8.0"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# NORM OF COMPLEX VECTOR \n",
+      "\n",
+      "u = array([2+3j, 4-1j, 3+5j])\n",
+      "norm(u)"
+     ],
+     "language": "python",
+     "prompt_number": 39
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$10.0$$"
+       ],
+       "text": [
+        "10.0"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# NORM OF REAL VECTOR\n",
+      "\n",
+      "u = array([6, 8, 0])\n",
+      "norm(u)"
+     ],
+     "language": "python",
+     "prompt_number": 40
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([ 27,   5, -24])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "u = array([5, 3, -4])\n",
+      "v = array([-1, 5, 2])\n",
+      "w = array([3, -1, -2])\n",
+      "5*u - 2*v"
+     ],
+     "language": "python",
+     "prompt_number": 43
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([-23,  17,  22])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "-2*u + 4*v - 3*w"
+     ],
+     "language": "python",
+     "prompt_number": 44
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$64.0$$"
+       ],
+       "text": [
+        "64.0"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "u = array([2+3j, 4-1j, 3+5j])\n",
+      "# u^2 = \n",
+      "norm(u)**2"
+     ],
+     "language": "python",
+     "prompt_number": 47
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "29"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# DOT PRODUCT\n",
+      "\n",
+      "u = array([1, 2, 3, 4])\n",
+      "v = array([2, 4, 5, 1])\n",
+      "dot(u, v)"
+     ],
+     "language": "python",
+     "prompt_number": 51
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$5.47722557505$$"
+       ],
+       "text": [
+        "5.47722557505"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "norm(u)"
+     ],
+     "language": "python",
+     "prompt_number": 52
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$45.0$$"
+       ],
+       "text": [
+        "45.0"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "angle(1+1j, deg=True)"
+     ],
+     "language": "python",
+     "prompt_number": 54
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$30.9637565321$$"
+       ],
+       "text": [
+        "30.9637565321"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "angle(5 + 3j, deg=True)\n",
+      "# same as theta = arctan(y/x)\n",
+      "# where y = 3, x = 5"
+     ],
+     "language": "python",
+     "prompt_number": 64
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$60.0$$"
+       ],
+       "text": [
+        "60.0"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "angle(1 + sqrt(3)*1j, deg=True)"
+     ],
+     "language": "python",
+     "prompt_number": 73
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$-90.0$$"
+       ],
+       "text": [
+        "-90.0"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "angle(0-1j, deg=True)"
+     ],
+     "language": "python",
+     "prompt_number": 66
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$90.0$$"
+       ],
+       "text": [
+        "90.0"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "angle(0+1j, deg=True)"
+     ],
+     "language": "python",
+     "prompt_number": 67
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$30.0$$"
+       ],
+       "text": [
+        "30.0"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "angle(sqrt(3)+1j, deg=True)"
+     ],
+     "language": "python",
+     "prompt_number": 68
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{pmatrix}135.0, & -135.0, & -45.0\\end{pmatrix}$$"
+       ],
+       "text": [
+        "(135.0, -135.0, -45.0)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "angle(-1+1j, deg=True), angle(-1-1j, deg=True),angle(1-1j, deg=True)"
+     ],
+     "language": "python",
+     "prompt_number": 76
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$150.0$$"
+       ],
+       "text": [
+        "150.0"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "angle(-sqrt(3)+1j, deg=True)"
+     ],
+     "language": "python",
+     "prompt_number": 77
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "matrix([[1, 2],\n        [3, 4]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# MATRIX\n",
+      "matrix = mat('[1 2;3 4]')\n",
+      "matrix"
+     ],
+     "language": "python",
+     "prompt_number": 86
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[-2. ,  1. ],\n       [ 1.5, -0.5]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "inv(matrix)"
+     ],
+     "language": "python",
+     "prompt_number": 81
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$-2.0$$"
+       ],
+       "text": [
+        "-2.0"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "det(matrix)"
+     ],
+     "language": "python",
+     "prompt_number": 82
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "matrix([[1, 3],\n        [2, 4]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "matrix.T # transpose"
+     ],
+     "language": "python",
+     "prompt_number": 83
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[5, 6]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "mat1 = array([[5, 6]])\n",
+      "mat1"
+     ],
+     "language": "python",
+     "prompt_number": 84
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[5],\n       [6]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "mat1.T"
+     ],
+     "language": "python",
+     "prompt_number": 85
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[ 35,  24, -39],\n       [ 20,  15, -23]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# MULTIPLICATION MATRIX\n",
+      "\n",
+      "M = array([[1,5,4], [2,3,2]])\n",
+      "N = array([[1, 1, -2], [2, 3, -1], [6, 2, -8]])\n",
+      "M.dot(N)"
+     ],
+     "language": "python",
+     "prompt_number": 88
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[17],\n       [39]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "A = array([[1, 2], [3, 4]])\n",
+      "B = array([[5], [6]])\n",
+      "A.dot(B)"
+     ],
+     "language": "python",
+     "prompt_number": 90
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[-1.48,  0.36,  0.88],\n       [ 0.56,  0.08, -0.36],\n       [ 0.16, -0.12,  0.04]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "A = array([[1, 3, 5], [2, 5, 1], [2, 3, 8]])\n",
+      "inverse = inv(A)\n",
+      "inverse"
+     ],
+     "language": "python",
+     "prompt_number": 110
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$-25.000000000000004$$"
+       ],
+       "text": [
+        "-25.000000000000004"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "det(A)"
+     ],
+     "language": "python",
+     "prompt_number": 114
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[1, 0, 0],\n       [0, 0, 0],\n       [0, 0, 1]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "A.dot(inverse).astype(int)"
+     ],
+     "language": "python",
+     "prompt_number": 104
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[1, 0, 0, 0],\n       [0, 1, 0, 0],\n       [0, 0, 1, 0],\n       [0, 0, 0, 1]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "A = array([[1, 2, 3, 4], [5, 4, 6, 3], [7, 5, 8, 1], [1, 1, 9, 2]])\n",
+      "A.dot(inv(A)).astype(int)"
+     ],
+     "language": "python",
+     "prompt_number": 105
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "A = \n [[1 3 5]\n [2 5 1]\n [2 3 8]]\nB =  [[10]\n [ 8]\n [ 3]]\n",
+       "text": [
+        "A = \n [[1 3 5]\n [2 5 1]\n [2 3 8]]\nB =  [[10]\n [ 8]\n [ 3]]\n"
+       ]
+      }
+     ],
+     "input": [
+      "# SOLVING LINEAR SYSTEM\n",
+      "# --> solve manually\n",
+      "# --> or use 'solve'\n",
+      "\n",
+      "#1\n",
+      "A = array([[1, 3, 5], [2, 5, 1], [2, 3, 8]])\n",
+      "B = array([[10], [8], [3]])\n",
+      "print(\"A = \\n\", A)\n",
+      "print(\"B = \", B)"
+     ],
+     "language": "python",
+     "prompt_number": 125
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[-9.28],\n       [ 5.16],\n       [ 0.76]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "ans = inv(A).dot(B)\n",
+      "ans"
+     ],
+     "language": "python",
+     "prompt_number": 126
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[0],\n       [0],\n       [0]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# check, should equal 0\n",
+      "check = A.dot(inv(A).dot(B)) - B\n",
+      "check.astype(int)"
+     ],
+     "language": "python",
+     "prompt_number": 130
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[-9.28],\n       [ 5.16],\n       [ 0.76]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "#2 solve\n",
+      "solve(A, B)"
+     ],
+     "language": "python",
+     "prompt_number": 127
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[0],\n       [0],\n       [0]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# check, should equal 0\n",
+      "check = A.dot(solve(A, B)) - B\n",
+      "check.astype(int)"
+     ],
+     "language": "python",
+     "prompt_number": 129
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[1, 2],\n       [3, 4]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# NORM CAN BE FOR VECTOR AND MATRIX\n",
+      "A = array([[1, 2], [3, 4]])\n",
+      "A"
+     ],
+     "language": "python",
+     "prompt_number": 134
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$5.47722557505$$"
+       ],
+       "text": [
+        "5.47722557505"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "norm(A) # default = frobenius norm = euclidean norm"
+     ],
+     "language": "python",
+     "prompt_number": 135
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$5.47722557505166$$"
+       ],
+       "text": [
+        "5.47722557505166"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "euclideanNorm = sqrt(1 + 4 + 9 + 16) # sqrt of all elements\n",
+      "euclideanNorm.evalf()"
+     ],
+     "language": "python",
+     "prompt_number": 145
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$5.47722557505$$"
+       ],
+       "text": [
+        "5.47722557505"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "norm(A, 'fro')"
+     ],
+     "language": "python",
+     "prompt_number": 136
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "7"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "norm(A, inf) # (max row sum)"
+     ],
+     "language": "python",
+     "prompt_number": 137
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "3"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "norm(A, -inf) # (min row sum)"
+     ],
+     "language": "python",
+     "prompt_number": 138
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "6"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "norm(A, 1) # (max column sum)"
+     ],
+     "language": "python",
+     "prompt_number": 139
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "4"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "norm(A, -1) # (min column sum)"
+     ],
+     "language": "python",
+     "prompt_number": 140
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$5.46498570422$$"
+       ],
+       "text": [
+        "5.46498570422"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "norm(A, 2) # (max row eigenvalue?)"
+     ],
+     "language": "python",
+     "prompt_number": 146
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$0.365966190626$$"
+       ],
+       "text": [
+        "0.365966190626"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "norm(A, -2) # (min row eigenvalue?)"
+     ],
+     "language": "python",
+     "prompt_number": 147
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "u = array([[1, -2, 4]])\n",
+      "v = array([[3, 5, 1]])\n",
+      "w = array([[2, 1, -3]])"
+     ],
+     "language": "python",
+     "prompt_number": 9
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[ -3, -16,  10]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "3*u - 2*v"
+     ],
+     "language": "python",
+     "prompt_number": 10
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[ 6,  1, 35]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "5*u + 3*v - 4*w"
+     ],
+     "language": "python",
+     "prompt_number": 11
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "-3"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "vdot(u, v)"
+     ],
+     "language": "python",
+     "prompt_number": 19
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "-12"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "vdot(u, w) # == inner(u, w)"
+     ],
+     "language": "python",
+     "prompt_number": 21
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "8"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "vdot(v, w)"
+     ],
+     "language": "python",
+     "prompt_number": 22
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{pmatrix}4.58257569496, & 5.9160797831\\end{pmatrix}$$"
+       ],
+       "text": [
+        "(4.58257569496, 5.9160797831)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "norm(u), norm(v)"
+     ],
+     "language": "python",
+     "prompt_number": 25
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{pmatrix}4.58257569495584, & 5.91607978309962\\end{pmatrix}$$"
+       ],
+       "text": [
+        "(4.58257569495584, 5.91607978309962)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "sqrt(21).evalf(), sqrt(35).evalf()"
+     ],
+     "language": "python",
+     "prompt_number": 30
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{303.0}{\\pi}$$"
+       ],
+       "text": [
+        "303.0\n?????\n  ?  "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# cos(theta) = (uv)/[norm(u)norm(v)]\n",
+      "(acos(-3/(sqrt(21)*sqrt(35))).evalf() * 180).round(0)/pi"
+     ],
+     "language": "python",
+     "prompt_number": 90
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "'''def dist(u, v):\n",
+      "    sums = 0\n",
+      "    n = len(u)\n",
+      "    for i in range(n):\n",
+      "        sums += (u[i] - v[i])**2\n",
+      "    return sympify(pow(sums, Rational(1, 2)))\n",
+      "\n",
+      "def proj(u, v):\n",
+      "    prod = Rational(sympify(vdot(u, v)), sympify(vdot(v, v)))\n",
+      "    results = []\n",
+      "    for i in range(len(u)):\n",
+      "        results.append(Rational(Rational(sympify(v[i]), 1), Rational(1, prod)))\n",
+      "    return results\n",
+      "'''"
+     ],
+     "language": "python",
+     "prompt_number": 15
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\sqrt{62}$$"
+       ],
+       "text": [
+        "  ____\n?? 62 "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "u = array([1, -2, 4])\n",
+      "v = array([3, 5, 1])\n",
+      "w = array([2, 1, -3])\n",
+      "dist(u, v)"
+     ],
+     "language": "python",
+     "prompt_number": 16
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{bmatrix}- \\frac{9}{35}, & - \\frac{3}{7}, & - \\frac{3}{35}\\end{bmatrix}$$"
+       ],
+       "text": [
+        "[-9/35, -3/7, -3/35]"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "proj(u, v)"
+     ],
+     "language": "python",
+     "prompt_number": 18
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\sqrt{59}$$"
+       ],
+       "text": [
+        "  ____\n?? 59 "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "dist(u, w)"
+     ],
+     "language": "python",
+     "prompt_number": 79
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{bmatrix}- \\frac{12}{7}, & - \\frac{6}{7}, & \\frac{18}{7}\\end{bmatrix}$$"
+       ],
+       "text": [
+        "[-12/7, -6/7, 18/7]"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "proj(u, w)"
+     ],
+     "language": "python",
+     "prompt_number": 81
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{1}{5}$$"
+       ],
+       "text": [
+        "1/5"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "n = Fraction(9, 45).numerator\n",
+      "d = Fraction(9, 45).denominator\n",
+      "Rational(n, d)"
+     ],
+     "language": "python",
+     "prompt_number": 68
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "u = array([[1], [3], [-4]])\n",
+      "v = array([[2], [1], [5]])\n",
+      "#w = array([[3], [-2], [6]])\n",
+      "a = array([1, 2, 3])\n",
+      "\n",
+      "def glam(vector):\n",
+      "    results = []\n",
+      "    for i in range(len(vector)):\n",
+      "        results.append(Rational(sympify(vector[i]), 1))\n",
+      "    return results\n",
+      "\n",
+      "def norm(u):\n",
+      "    sum = 0\n",
+      "    for i in range(len(u)):\n",
+      "        sum += Rational(sympify(u[i]**2))\n",
+      "    return sqrt(sum)\n",
+      "\n",
+      "def sub(u, v):\n",
+      "    results = []\n",
+      "    for i in range(len(u)):\n",
+      "        results.append(Rational(sympify(u[i]), 1) - Rational(sympify(v[i]), 1))\n",
+      "    return results\n",
+      "\n",
+      "def multEachElement(u, v):\n",
+      "    results = []\n",
+      "    for i in range(len(u)):\n",
+      "        results.append(Rational(sympify(u[i]), 1) * Rational(sympify(v[i]), 1))\n",
+      "    return results\n",
+      "\n",
+      "def scale(c, v):\n",
+      "    results = []\n",
+      "    for i in range(len(u)):\n",
+      "        results.append(Rational(c* sympify(v[i]), 1))\n",
+      "    return results\n",
+      "\n",
+      "def dot(u, v):\n",
+      "    sum = 0\n",
+      "    for i in range(len(u)):\n",
+      "        sum += Rational(sympify(u[i]), 1) * Rational(sympify(v[i]), 1)\n",
+      "    return sum\n",
+      "\n",
+      "def dist(u, v):\n",
+      "    sums = 0\n",
+      "    n = len(u)\n",
+      "    for i in range(n):\n",
+      "        sums += (u[i] - v[i])**2\n",
+      "    return sympify(pow(sums, Rational(1, 2)))\n",
+      "\n",
+      "def proj(u, v):\n",
+      "    prod = Rational(sympify(vdot(u, v)), sympify(vdot(v, v)))\n",
+      "    results = []\n",
+      "    for i in range(len(u)):\n",
+      "        results.append(Rational(Rational(sympify(v[i]), 1), Rational(1, prod)))\n",
+      "    return results\n",
+      "\n",
+      "def unitVector(u):\n",
+      "    results = []\n",
+      "    normValue = norm(u)\n",
+      "    for i in range(len(u)):\n",
+      "        results.append(Rational(sympify(u[i]), Rational(Fraction(normValue, 1).numerator, Fraction(normValue, 1).denominator)))\n",
+      "    return results"
+     ],
+     "language": "python",
+     "prompt_number": 69
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{bmatrix}1, & 3, & -4\\end{bmatrix}$$"
+       ],
+       "text": [
+        "[1, 3, -4]"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "glam(u)"
+     ],
+     "language": "python",
+     "prompt_number": 109
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{bmatrix}-1, & 7, & -22\\end{bmatrix}$$"
+       ],
+       "text": [
+        "[-1, 7, -22]"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "sub(scale(3, u), scale(2, v))"
+     ],
+     "language": "python",
+     "prompt_number": 117
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{bmatrix}2, & 3, & -20\\end{bmatrix}$$"
+       ],
+       "text": [
+        "[2, 3, -20]"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "multEachElement(u, v)"
+     ],
+     "language": "python",
+     "prompt_number": 121
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$-15$$"
+       ],
+       "text": [
+        "-15"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "dot(u, v)"
+     ],
+     "language": "python",
+     "prompt_number": 125
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([ -7, -14,  13,  45,   0])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "u = array([2, -5, 4, 6, -3])\n",
+      "v = array([5, -2, 1, -7, -4])\n",
+      "4*u - 3*v"
+     ],
+     "language": "python",
+     "prompt_number": 56
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$3 \\sqrt{10}$$"
+       ],
+       "text": [
+        "    ____\n3??? 10 "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "norm(u)"
+     ],
+     "language": "python",
+     "prompt_number": 57
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\sqrt{95}$$"
+       ],
+       "text": [
+        "  ____\n?? 95 "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "norm(v)"
+     ],
+     "language": "python",
+     "prompt_number": 20
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{bmatrix}- \\frac{6}{19}, & \\frac{12}{95}, & - \\frac{6}{95}, & \\frac{42}{95}, & \\frac{24}{95}\\end{bmatrix}$$"
+       ],
+       "text": [
+        "?       12         42  24?\n?-6/19, ??, -6/95, ??, ???\n?       95         95  95?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "proj(u,v)"
+     ],
+     "language": "python",
+     "prompt_number": 27
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\sqrt{197}$$"
+       ],
+       "text": [
+        "  _____\n?? 197 "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "dist(u, v)"
+     ],
+     "language": "python",
+     "prompt_number": 28
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\sqrt{74}$$"
+       ],
+       "text": [
+        "  ____\n?? 74 "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "u = array([5, -7])\n",
+      "norm(u)"
+     ],
+     "language": "python",
+     "prompt_number": 31
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$24$$"
+       ],
+       "text": [
+        "24"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "sqrt(576)"
+     ],
+     "language": "python",
+     "prompt_number": 32
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\sqrt{542}$$"
+       ],
+       "text": [
+        "  _____\n?? 542 "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "sqrt(542)"
+     ],
+     "language": "python",
+     "prompt_number": 28
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{133}{144}$$"
+       ],
+       "text": [
+        "133\n???\n144"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "Rational(1, 4) + Rational(1, 9) + Rational(9, 16)"
+     ],
+     "language": "python",
+     "prompt_number": 27
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([ 2.66292135, -1.30337079,  2.23595506])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "from numpy.linalg import *\n",
+      "A = array([[1,2,4], [3,5,-2], [3,-1,3]])\n",
+      "b = array([9, -3, 16])\n",
+      "x = solve(A, b)\n",
+      "x"
+     ],
+     "language": "python",
+     "prompt_number": 42
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "# SCHAUM LINEAR ALGEBRA: Chapter 2\n",
+      "A = matrix([[1, -2, 3], [4, 5, -6]])\n",
+      "B = matrix([[3, 0, 2], [-7, 1, 8]])"
+     ],
+     "language": "python",
+     "prompt_number": 43
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "matrix([[ 4, -2,  5],\n        [-3,  6,  2]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "A + B"
+     ],
+     "language": "python",
+     "prompt_number": 44
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "matrix([[ -7,  -4,   0],\n        [ 29,   7, -36]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "2*A - 3*B"
+     ],
+     "language": "python",
+     "prompt_number": 45
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "matrix([[22]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "r = matrix([6, -1, 7, 5])\n",
+      "c = matrix([[4], [-9], [-3], [2]])\n",
+      "dot(r, c) # or * instead of dot()"
+     ],
+     "language": "python",
+     "prompt_number": 46
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "matrix([[ 11,  -6,  14],\n        [  1,   2, -14]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "A = matrix([[1, 3], [2, -1]])\n",
+      "B = matrix([[2, 0, -4], [3, -2, 6]])\n",
+      "dot(A, B)"
+     ],
+     "language": "python",
+     "prompt_number": 11
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "matrix([[  3,   6, -13,  13],\n        [ 26,  -5,   0,  32]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "A = matrix([[2,3,-1], [4,-2,5]])\n",
+      "B = matrix([[2,-1,0,6], [1,3,-5,1], [4,1,-2,2]])\n",
+      "dot(A, B)"
+     ],
+     "language": "python",
+     "prompt_number": 12
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "A =\n [[ 1 -2  3]\n [ 4  5 -6]]\nA.T =\n [[ 1  4]\n [-2  5]\n [ 3 -6]]\n",
+       "text": [
+        "A =\n [[ 1 -2  3]\n [ 4  5 -6]]\nA.T =\n [[ 1  4]\n [-2  5]\n [ 3 -6]]\n"
+       ]
+      }
+     ],
+     "input": [
+      "print(\"A =\\n\", A)\n",
+      "print(\"A.T =\\n\", A.T)"
+     ],
+     "language": "python",
+     "prompt_number": 47
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "A = matrix([[1,2], [4,-3]])\n",
+      "A2 = A**2\n",
+      "A3 = A**3"
+     ],
+     "language": "python",
+     "prompt_number": 50
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\left[\\begin{matrix}-13.0 & 52.0\\\\104.0 & -117.0\\end{matrix}\\right]$$"
+       ],
+       "text": [
+        "?-13.0   52.0 ?\n?             ?\n?104.0  -117.0?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "x = symbols('x')\n",
+      "f = 2*x**3 - 4*x\n",
+      "f = lambdify(x, f)\n",
+      "c = 5*eye(A.ndim)\n",
+      "f(A) + c"
+     ],
+     "language": "python",
+     "prompt_number": 59
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\left[\\begin{matrix}5 & 0\\\\0 & 5\\end{matrix}\\right]$$"
+       ],
+       "text": [
+        "?5  0?\n?    ?\n?0  5?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "5 * eye(A.ndim)"
+     ],
+     "language": "python",
+     "prompt_number": 55
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\left[\\begin{matrix}0 & 0\\\\0 & 0\\end{matrix}\\right]$$"
+       ],
+       "text": [
+        "?0  0?\n?    ?\n?0  0?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "g = x**2 + 2*x \n",
+      "g = lambdify(x, g)\n",
+      "c = 11 * eye(A.ndim)\n",
+      "g(A) - c"
+     ],
+     "language": "python",
+     "prompt_number": 63
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "matrix([[1, 0, 0],\n        [0, 1, 0],\n        [0, 0, 1]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "A = matrix([[1,2,4], [0,-1,1], [2,3,8]])\n",
+      "B = matrix([[-11,-4,6], [2,0,-1], [2,1,-1]])\n",
+      "dot(A, B)"
+     ],
+     "language": "python",
+     "prompt_number": 4
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "from scipy import *"
+     ],
+     "language": "python",
+     "prompt_number": 21
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "array([[-1. ,  1.5],\n       [ 2. , -2.5]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "A = matrix([[5, 3], [4, 2]])\n",
+      "inv(A)"
+     ],
+     "language": "python",
+     "prompt_number": 29
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "matrix([[ 5.,  3.],\n        [ 4.,  2.]])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "A * eye(2) # matrix * identity = matrix"
+     ],
+     "language": "python",
+     "prompt_number": 30
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python",
+     "prompt_number": 21
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    }
+   ]
+  }
+ ],
+ "cells": [],
+ "metadata": {},
+ "nbformat": 3,
+ "nbformat_minor": 0
+}

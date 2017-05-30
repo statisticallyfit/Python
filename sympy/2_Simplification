@@ -1,0 +1,2692 @@
+{
+ "worksheets": [
+  {
+   "cells": [
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "from sympy import *\n",
+      "#from numpy import *\n",
+      "from sympy.abc import theta, alpha, beta\n",
+      "init_printing()\n",
+      "x, y, z, t, u, v, w, n= symbols('x y z t u v w n')\n",
+      "T = theta\n",
+      "a = alpha\n",
+      "b = beta"
+     ],
+     "language": "python",
+     "prompt_number": 19
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$1$$"
+       ],
+       "text": [
+        "1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Simplify\n",
+      "\n",
+      "simplify(sin(x)**2 + cos(x)**2)"
+     ],
+     "language": "python",
+     "prompt_number": 5
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$- \\sqrt{5}$$"
+       ],
+       "text": [
+        "   ___\n-?? 5 "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Limit\n",
+      "\n",
+      "limit(sqrt(5*x**2 - 2)/(x + 3), x, -oo)"
+     ],
+     "language": "python",
+     "prompt_number": 69
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$1$$"
+       ],
+       "text": [
+        "1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "limit((3*x**2 - x - 2)/(2*x**2 + x - 3), x, 1)"
+     ],
+     "language": "python",
+     "prompt_number": 3
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$4$$"
+       ],
+       "text": [
+        "4"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "limit((x**4 - 1)/(x - 1), x, 1)"
+     ],
+     "language": "python",
+     "prompt_number": 4
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\lim_{t \\to 2}\\left(\\frac{1}{t^{3} - 4 t} \\left(t^{3} + 3 t^{2} - 12 t + 4\\right)\\right)$$"
+       ],
+       "text": [
+        "     3      2           \n    t  + 3?t  - 12?t + 4\nlim ????????????????????\nt->2       3            \n          t  - 4?t      "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Showing Limit\n",
+      "\n",
+      "expr = Limit((t**3 + 3*t**2 - 12*t + 4)/(t**3 - 4*t), t, 2)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 115
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{3}{2}$$"
+       ],
+       "text": [
+        "3/2"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr.doit()"
+     ],
+     "language": "python",
+     "prompt_number": 13
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\lim_{x \\to \\infty}\\left(- x + \\sqrt{x^{2} - 3 x}\\right)$$"
+       ],
+       "text": [
+        "            __________\n           ?  2       \nlim -x + ??  x  - 3?x \nx->?                  "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = Limit(sqrt(x**2 - 3*x) - x, x, oo)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 16
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$- \\frac{3}{2}$$"
+       ],
+       "text": [
+        "-3/2"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr.doit()"
+     ],
+     "language": "python",
+     "prompt_number": 17
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\lim_{x \\to -1}\\left(\\frac{x^{2} + 6 x + 5}{x^{2} - 3 x - 4}\\right)$$"
+       ],
+       "text": [
+        "      2          \n     x  + 6?x + 5\n lim ????????????\nx->-1 2          \n     x  - 3?x - 4"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = Limit((x**2 + 6*x + 5)/(x**2 - 3*x - 4), x, -1)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 71
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$- \\frac{4}{5}$$"
+       ],
+       "text": [
+        "-4/5"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr.doit()"
+     ],
+     "language": "python",
+     "prompt_number": 72
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{pmatrix}\\infty, & -\\infty\\end{pmatrix}$$"
+       ],
+       "text": [
+        "(?, -?)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Evaluating single side limits\n",
+      "\n",
+      "r, l = limit(1/x, x, 0, '+'), limit(1/x, x, 0, '-')\n",
+      "r, l"
+     ],
+     "language": "python",
+     "prompt_number": 73
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\infty$$"
+       ],
+       "text": [
+        "?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "limit(1/abs(2 - x), x, 2, '+')"
+     ],
+     "language": "python",
+     "prompt_number": 33
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$-\\infty$$"
+       ],
+       "text": [
+        "-?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "limit(1/(x - 3), x, 3, '-')"
+     ],
+     "language": "python",
+     "prompt_number": 74
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "f = 1/(x - 3)\n",
+      "\n",
+      "def limitExists(f, x, a): #args: function and variable and constant\n",
+      "    leftLim = limit(f, x, a, '-')\n",
+      "    rightLim = limit(f, x, a, '+')\n",
+      "    if leftLim == rightLim:\n",
+      "        return true\n",
+      "    return false"
+     ],
+     "language": "python",
+     "prompt_number": 75
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\mathrm{True}$$"
+       ],
+       "text": [
+        "True"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "limitExists(f, x, 2)"
+     ],
+     "language": "python",
+     "prompt_number": 76
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\mathrm{False}$$"
+       ],
+       "text": [
+        "False"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "limitExists(f, x, 3)"
+     ],
+     "language": "python",
+     "prompt_number": 40
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "def lim(f, x, a):\n",
+      "    if limitExists(f, x, a):\n",
+      "        return limit(f, x, a)\n",
+      "    return nan"
+     ],
+     "language": "python",
+     "prompt_number": 49
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$e$$"
+       ],
+       "text": [
+        "?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "lim((1 + 1/x)**(x), x, oo)"
+     ],
+     "language": "python",
+     "prompt_number": 48
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{cases} t - 2 & \\text{for}\\: t < 0 \\\\t^{2} & \\text{for}\\: t \\geq 0 \\wedge t \\leq 2 \\\\2 t & \\text{for}\\: t > 2 \\end{cases}$$"
+       ],
+       "text": [
+        "?t - 2      for t < 0    \n?                        \n?  2                     \n? t     for t ? 0 ? t ? 2\n?                        \n? 2?t       for t > 2    \n?                        "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "#Piecewise function \n",
+      "\n",
+      "g = Piecewise((t - 2, t<0), (t**2, And(t>=0, t<=2)), (2*t, t>2))\n",
+      "g"
+     ],
+     "language": "python",
+     "prompt_number": 77
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x - 1$$"
+       ],
+       "text": [
+        "x - 1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Simplify\n",
+      "simplify((x**3 + x**2 - x - 1)/(x**2 + 2*x + 1))"
+     ],
+     "language": "python",
+     "prompt_number": 78
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{x - 9}{\\sqrt{x} - 3}$$"
+       ],
+       "text": [
+        "  x - 9  \n?????????\n  ___    \n?? x  - 3"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "simplify((x - 9)/(sqrt(x) - 3))"
+     ],
+     "language": "python",
+     "prompt_number": 79
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\left(x - 2\\right) \\left(x - 1\\right)$$"
+       ],
+       "text": [
+        "(x - 2)?(x - 1)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "'''\n",
+      "another simplification calculator\n",
+      "http://www.wolframalpha.com/widget/widgetPopup\n",
+      ".jsp?p=v&id=7014d9722bc42de3f621eaad1da2615e&title=\n",
+      "Simplifying+Algebraic+Expressions+Calculator&theme=\n",
+      "blue&i0=9x-9y%5E3&podSelect\n",
+      "'''\n",
+      "simplify(gamma(x)/gamma(x - 2))"
+     ],
+     "language": "python",
+     "prompt_number": 82
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$n \\left(n - 1\\right)$$"
+       ],
+       "text": [
+        "n?(n - 1)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "simplify(factorial(n)/factorial(n - 2))"
+     ],
+     "language": "python",
+     "prompt_number": 85
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "def fact(function):\n",
+      "    return factorial(function)"
+     ],
+     "language": "python",
+     "prompt_number": 95
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\left(n + 1\\right)!}{\\left(n + 3\\right)!}$$"
+       ],
+       "text": [
+        "(n + 1)!\n????????\n(n + 3)!"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = fac(n+1)/fac(n+3)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 96
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{1}{\\left(n + 2\\right) \\left(n + 3\\right)}$$"
+       ],
+       "text": [
+        "       1       \n???????????????\n(n + 2)?(n + 3)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "simplify(expr)"
+     ],
+     "language": "python",
+     "prompt_number": 94
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x + 2$$"
+       ],
+       "text": [
+        "x + 2"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "simplify(fact(x**2 - 4)/((x - 2)*fact(x**2 - 5)))"
+     ],
+     "language": "python",
+     "prompt_number": 97
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{n}{n + 1}$$"
+       ],
+       "text": [
+        "  n  \n?????\nn + 1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "simplify(fact(n)**2/(fact(n - 1) * fact(n + 1)))"
+     ],
+     "language": "python",
+     "prompt_number": 98
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\theta \\left(\\theta + 1\\right) \\left(\\theta + 2\\right)$$"
+       ],
+       "text": [
+        "??(? + 1)?(? + 2)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "simplify(fact(theta + 2)/fact(theta - 1))"
+     ],
+     "language": "python",
+     "prompt_number": 106
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\left(x + 1\\right)^{2}$$"
+       ],
+       "text": [
+        "       2\n(x + 1) "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Factor\n",
+      "\n",
+      "factor(x**2 + 2*x + 1)"
+     ],
+     "language": "python",
+     "prompt_number": 100
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\left(t - 2\\right) \\left(t^{2} + 5 t - 2\\right)$$"
+       ],
+       "text": [
+        "        ? 2          ?\n(t - 2)??t  + 5?t - 2?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factor(t**3 + 3*t**2 - 12*t + 4)"
+     ],
+     "language": "python",
+     "prompt_number": 124
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$t \\left(t - 2\\right) \\left(t + 2\\right)$$"
+       ],
+       "text": [
+        "t?(t - 2)?(t + 2)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factor(t**3 - 4*t)"
+     ],
+     "language": "python",
+     "prompt_number": 119
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\left(t - 1\\right)^{2} \\left(t + 2\\right)$$"
+       ],
+       "text": [
+        "       2        \n(t - 1) ?(t + 2)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factor(t**3 - 3*t + 2)"
+     ],
+     "language": "python",
+     "prompt_number": 120
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\left(t - 1\\right)^{2} \\left(t + 3\\right)$$"
+       ],
+       "text": [
+        "       2        \n(t - 1) ?(t + 3)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factor(t**3 + t**2 - 5*t + 3)"
+     ],
+     "language": "python",
+     "prompt_number": 125
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\left(x - 1\\right) \\left(3 x + 2\\right)$$"
+       ],
+       "text": [
+        "(x - 1)?(3?x + 2)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factor(3*x**2 - x - 2)"
+     ],
+     "language": "python",
+     "prompt_number": 126
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{2} + 2 x + 1$$"
+       ],
+       "text": [
+        " 2          \nx  + 2?x + 1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Expand\n",
+      "\n",
+      "expand((x + 1)**2)"
+     ],
+     "language": "python",
+     "prompt_number": 127
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{2} - x - 6$$"
+       ],
+       "text": [
+        " 2        \nx  - x - 6"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand((x + 2)*(x - 3))"
+     ],
+     "language": "python",
+     "prompt_number": 129
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$-2$$"
+       ],
+       "text": [
+        "-2"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand((x + 1)*(x - 2) - (x - 1)*x)"
+     ],
+     "language": "python",
+     "prompt_number": 130
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\left(x - 1\\right) \\left(x^{2} + 1\\right)$$"
+       ],
+       "text": [
+        "        ? 2    ?\n(x - 1)??x  + 1?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factor(x**3 - x**2 + x - 1)"
+     ],
+     "language": "python",
+     "prompt_number": 131
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$z \\left(x + 2 y\\right)^{2}$$"
+       ],
+       "text": [
+        "           2\nz?(x + 2?y) "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = x**2*z + 4*x*y*z + 4*y**2*z\n",
+      "factor(expr)"
+     ],
+     "language": "python",
+     "prompt_number": 134
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "def roots(function):\n",
+      "    return factor_list(function)"
+     ],
+     "language": "python",
+     "prompt_number": 141
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{pmatrix}1, & \\begin{bmatrix}\\begin{pmatrix}z, & 1\\end{pmatrix}, & \\begin{pmatrix}x + 2 y, & 2\\end{pmatrix}\\end{bmatrix}\\end{pmatrix}$$"
+       ],
+       "text": [
+        "(1, [(z, 1), (x + 2?y, 2)])"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "roots(expr)"
+     ],
+     "language": "python",
+     "prompt_number": 142
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "expr = expand((cos(x) + sin(x))**2)"
+     ],
+     "language": "python",
+     "prompt_number": 144
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\left(\\sin{\\left (x \\right )} + \\cos{\\left (x \\right )}\\right)^{2}$$"
+       ],
+       "text": [
+        "                 2\n(sin(x) + cos(x)) "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factor(expr)"
+     ],
+     "language": "python",
+     "prompt_number": 145
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{3} - x^{2} z + 2 x^{2} + x y + x - 3$$"
+       ],
+       "text": [
+        " 3    2        2              \nx  - x ?z + 2?x  + x?y + x - 3"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Collect collects common powers of a term\n",
+      "expr = x*y + x - 3 + 2*x**2 - z*x**2 + x**3\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 146
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{3} + x^{2} \\left(- z + 2\\right) + x \\left(y + 1\\right) - 3$$"
+       ],
+       "text": [
+        " 3    2                         \nx  + x ?(-z + 2) + x?(y + 1) - 3"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "tidyExpr = collect(expr, x)\n",
+      "tidyExpr"
+     ],
+     "language": "python",
+     "prompt_number": 150
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$- z + 2$$"
+       ],
+       "text": [
+        "-z + 2"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# coeff(x, n) gives coefficient of x**n in the expression\n",
+      "tidyExpr.coeff(x, 2)"
+     ],
+     "language": "python",
+     "prompt_number": 151
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$y + 1$$"
+       ],
+       "text": [
+        "y + 1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "tidyExpr.coeff(x, 1)"
+     ],
+     "language": "python",
+     "prompt_number": 152
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$-3$$"
+       ],
+       "text": [
+        "-3"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "tidyExpr.coeff(x, 0)"
+     ],
+     "language": "python",
+     "prompt_number": 164
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "expr = a*x**4+5*x**4 + b*x**2 -(Rational(5/4))*x**2 - x*exp(-x) + 2*x*exp(-x) + 3"
+     ],
+     "language": "python",
+     "prompt_number": 178
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{4} \\left(\\alpha + 5\\right) + x^{2} \\left(\\beta - \\frac{5}{4}\\right) + x e^{- x} + 3$$"
+       ],
+       "text": [
+        " 4            2                -x    \nx ?(? + 5) + x ?(? - 5/4) + x??   + 3"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr.collect(x)"
+     ],
+     "language": "python",
+     "prompt_number": 179
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\alpha + 5$$"
+       ],
+       "text": [
+        "? + 5"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr.collect(x).coeff(x, 4)"
+     ],
+     "language": "python",
+     "prompt_number": 174
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\beta - \\frac{5}{4}$$"
+       ],
+       "text": [
+        "? - 5/4"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr.collect(x).coeff(x, 2)"
+     ],
+     "language": "python",
+     "prompt_number": 175
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$e^{- x}$$"
+       ],
+       "text": [
+        " -x\n?  "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr.collect(x).coeff(x, 1)"
+     ],
+     "language": "python",
+     "prompt_number": 180
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{1}{x} \\left(x + 1\\right)$$"
+       ],
+       "text": [
+        "x + 1\n?????\n  x  "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# cancel will take rationals and put it in p/q form where\n",
+      "# p and q are expanded with no common factors\n",
+      "\n",
+      "cancel((x**2 + 2*x + 1)/(x**2 + x))"
+     ],
+     "language": "python",
+     "prompt_number": 184
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\frac{3 x}{2} - 2}{x - 4} + \\frac{1}{x}$$"
+       ],
+       "text": [
+        "3?x        \n??? - 2    \n 2        1\n??????? + ?\n x - 4    x"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = 1/x + (3*x/2 - 2)/(x - 4)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 185
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{3 x^{2} - 2 x - 8}{2 x^{2} - 8 x}$$"
+       ],
+       "text": [
+        "   2          \n3?x  - 2?x - 8\n??????????????\n     2        \n  2?x  - 8?x  "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "cancel(expr)"
+     ],
+     "language": "python",
+     "prompt_number": 186
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{1}{x^{2} - 1} \\left(x y^{2} - 2 x y z + x z^{2} + y^{2} - 2 y z + z^{2}\\right)$$"
+       ],
+       "text": [
+        "   2                2    2            2\nx?y  - 2?x?y?z + x?z  + y  - 2?y?z + z \n???????????????????????????????????????\n                  2                    \n                 x  - 1                "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expr = (x*y**2 - 2*x*y*z + x*z**2 + y**2 - 2*y*z + z**2)/(x**2 - 1)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 188
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{1}{x - 1} \\left(y^{2} - 2 y z + z^{2}\\right)$$"
+       ],
+       "text": [
+        " 2            2\ny  - 2?y?z + z \n???????????????\n     x - 1     "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "cancel(expr)"
+     ],
+     "language": "python",
+     "prompt_number": 189
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\left(y - z\\right)^{2}}{x - 1}$$"
+       ],
+       "text": [
+        "       2\n(y - z) \n????????\n x - 1  "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factor(expr)"
+     ],
+     "language": "python",
+     "prompt_number": 190
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{4 x^{3} + 21 x^{2} + 10 x + 12}{x^{4} + 5 x^{3} + 5 x^{2} + 4 x}$$"
+       ],
+       "text": [
+        "   3       2            \n4?x  + 21?x  + 10?x + 12\n????????????????????????\n  4      3      2       \n x  + 5?x  + 5?x  + 4?x "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Apart does partial fraction decomposition\n",
+      "\n",
+      "expr = (4*x**3 + 21*x**2 + 10*x + 12)/(x**4 + 5*x**3 + 5*x**2 + 4*x)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 192
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{2 x - 1}{x^{2} + x + 1} - \\frac{1}{x + 4} + \\frac{3}{x}$$"
+       ],
+       "text": [
+        " 2?x - 1       1     3\n?????????? - ????? + ?\n 2           x + 4   x\nx  + x + 1            "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "apart(expr)"
+     ],
+     "language": "python",
+     "prompt_number": 193
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{3}{x + 1} + \\frac{2}{x - 4}$$"
+       ],
+       "text": [
+        "  3       2  \n????? + ?????\nx + 1   x - 4"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "apart((5*x - 10)/(x**2 - 3*x - 4))"
+     ],
+     "language": "python",
+     "prompt_number": 194
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x$$"
+       ],
+       "text": [
+        "x"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "## Trig Simplification\n",
+      "cos(acos(x))"
+     ],
+     "language": "python",
+     "prompt_number": 196
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\pi}{2}$$"
+       ],
+       "text": [
+        "?\n?\n2"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "asin(1)"
+     ],
+     "language": "python",
+     "prompt_number": 197
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$1$$"
+       ],
+       "text": [
+        "1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# simplify with trig identities\n",
+      "trigsimp(sin(T)**2 + cos(T)**2)"
+     ],
+     "language": "python",
+     "prompt_number": 203
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{1}{2} \\cos{\\left (4 \\theta \\right )} + \\frac{1}{2}$$"
+       ],
+       "text": [
+        "cos(4??)   1\n???????? + ?\n   2       2"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "trigsimp(sin(T)**4 + cos(T)**4 - 2*cos(T)**2*sin(T)**2)"
+     ],
+     "language": "python",
+     "prompt_number": 204
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\sin^{2}{\\left (x \\right )}$$"
+       ],
+       "text": [
+        "   2   \nsin (x)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "trigsimp(sin(x)*tan(x)/sec(x))"
+     ],
+     "language": "python",
+     "prompt_number": 206
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\cosh{\\left (2 x \\right )}$$"
+       ],
+       "text": [
+        "cosh(2?x)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "#hyperbolic functions\n",
+      "trigsimp(cosh(x)**2 + sinh(x)**2)"
+     ],
+     "language": "python",
+     "prompt_number": 207
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\cosh{\\left (x \\right )}$$"
+       ],
+       "text": [
+        "cosh(x)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "trigsimp(sinh(x)/tanh(x))"
+     ],
+     "language": "python",
+     "prompt_number": 208
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\sin{\\left (\\alpha \\right )} \\cos{\\left (\\beta \\right )} + \\sin{\\left (\\beta \\right )} \\cos{\\left (\\alpha \\right )}$$"
+       ],
+       "text": [
+        "sin(?)?cos(?) + sin(?)?cos(?)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "#to apply the sum or double angle identities\n",
+      "expand_trig(sin(a + b))"
+     ],
+     "language": "python",
+     "prompt_number": 209
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$- \\sin{\\left (\\alpha \\right )} \\sin{\\left (\\beta \\right )} + \\cos{\\left (\\alpha \\right )} \\cos{\\left (\\beta \\right )}$$"
+       ],
+       "text": [
+        "-sin(?)?sin(?) + cos(?)?cos(?)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_trig(cos(a + b))"
+     ],
+     "language": "python",
+     "prompt_number": 210
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{2 \\tan{\\left (\\theta \\right )}}{- \\tan^{2}{\\left (\\theta \\right )} + 1}$$"
+       ],
+       "text": [
+        "   2?tan(?)  \n?????????????\n     2       \n- tan (?) + 1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_trig(tan(2*T))"
+     ],
+     "language": "python",
+     "prompt_number": 215
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\sin{\\left (\\alpha + \\beta \\right )}$$"
+       ],
+       "text": [
+        "sin(? + ?)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "#expand_trig and trigsimp are inverses of each other\n",
+      "\n",
+      "trigsimp(expand_trig(sin(a + b)))"
+     ],
+     "language": "python",
+     "prompt_number": 216
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "# Powers\n",
+      "\n",
+      "# 1. x^a*x^b = x^(a+b)\n",
+      "# 2. x^a * y^a = (xy)^a\n",
+      "# 3. (x^a)^b = x^(ab)\n",
+      "\n",
+      "# Conditions for 2 to be true: \n",
+      "#     x, y > 0 AND a is Real\n",
+      "# Conditions for 3 to be true\n",
+      "#     b is an integer"
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "x, y = symbols('x y', positive=True)\n",
+      "a, b, n, m = symbols('a b n m', real=True)\n",
+      "z, t, c = symbols('z t c')\n",
+      "T, A, B = symbols('T A B')\n",
+      "T = theta\n",
+      "A = alpha\n",
+      "B = beta"
+     ],
+     "language": "python",
+     "prompt_number": 8
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "True"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "sqrt(x) == x**Rational(1, 2)"
+     ],
+     "language": "python",
+     "prompt_number": 9
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "# --> powsimp applies identities 1 and 2 from left to right\n",
+      "# --> expand_power_exp applies (1) and expand_power_base applies\n",
+      "# (2) from right to left\n",
+      "# --> powdenest applies (3) from left to right"
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{a + b}$$"
+       ],
+       "text": [
+        " a + b\nx     "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "powsimp(x**a*x**b)"
+     ],
+     "language": "python",
+     "prompt_number": 10
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{b} x^{\\theta}$$"
+       ],
+       "text": [
+        " b  ?\nx ?x "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_power_exp(x**(a+b))"
+     ],
+     "language": "python",
+     "prompt_number": 28
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{a} y^{a}$$"
+       ],
+       "text": [
+        " a  a\nx ?y "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_power_base((x*y)**a)"
+     ],
+     "language": "python",
+     "prompt_number": 29
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$a^{m - n}$$"
+       ],
+       "text": [
+        " m - n\na     "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "powsimp(a**m/a**n)"
+     ],
+     "language": "python",
+     "prompt_number": 30
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$t^{2} z^{2}$$"
+       ],
+       "text": [
+        " 2  2\nt ?z "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "(z*t)**2 #powsimp applied automatically"
+     ],
+     "language": "python",
+     "prompt_number": 35
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\sqrt{x} \\sqrt{y}$$"
+       ],
+       "text": [
+        "  ___   ___\n?? x ??? y "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "sqrt(x)*sqrt(y)"
+     ],
+     "language": "python",
+     "prompt_number": 36
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{a} x^{b}$$"
+       ],
+       "text": [
+        " a  b\nx ?x "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_power_exp(x**(a+b))"
+     ],
+     "language": "python",
+     "prompt_number": 37
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{a} y^{a}$$"
+       ],
+       "text": [
+        " a  a\nx ?y "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_power_base((x*y)**a) #conditions for #2 hold"
+     ],
+     "language": "python",
+     "prompt_number": 38
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\left(t z\\right)^{c}$$"
+       ],
+       "text": [
+        "     c\n(t?z) "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_power_base((t*z)**c) #conditions do not hold since vars aren't >0"
+     ],
+     "language": "python",
+     "prompt_number": 39
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$t^{c} z^{c}$$"
+       ],
+       "text": [
+        " c  c\nt ?z "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_power_base((t*z)**c, force=True)"
+     ],
+     "language": "python",
+     "prompt_number": 40
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x^{a b}$$"
+       ],
+       "text": [
+        " a?b\nx   "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "powdenest((x**a)**b)"
+     ],
+     "language": "python",
+     "prompt_number": 41
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\left(z^{a}\\right)^{b}$$"
+       ],
+       "text": [
+        "    b\n? a? \n?z ? "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "powdenest((z**a)**b) #b is not an integer, is Real"
+     ],
+     "language": "python",
+     "prompt_number": 42
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$z^{a b}$$"
+       ],
+       "text": [
+        " a?b\nz   "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "powdenest((z**a)**b, force=True)"
+     ],
+     "language": "python",
+     "prompt_number": 43
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\log{\\left (x \\right )}$$"
+       ],
+       "text": [
+        "log(x)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "#Logarithms\n",
+      "ln(x)"
+     ],
+     "language": "python",
+     "prompt_number": 45
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "#identities\n",
+      "\n",
+      "#1 log(xy) = log(x) + log(y)\n",
+      "#2 log(x^n) = nlog(x)\n",
+      "\n",
+      "#neither is true if x and y are complex numbers"
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "x, y = symbols('x y', positive=True)\n",
+      "n = symbols('n', real=True)"
+     ],
+     "language": "python",
+     "prompt_number": 16
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x$$"
+       ],
+       "text": [
+        "x"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "log(exp(x))"
+     ],
+     "language": "python",
+     "prompt_number": 47
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\log{\\left (x \\right )} + \\log{\\left (y \\right )}$$"
+       ],
+       "text": [
+        "log(x) + log(y)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "# Expand log applies #1 and #2 from left to right\n",
+      "expand_log(log(x*y))"
+     ],
+     "language": "python",
+     "prompt_number": 11
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\log{\\left (x \\right )} - \\log{\\left (y \\right )}$$"
+       ],
+       "text": [
+        "log(x) - log(y)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_log(log(x/y))"
+     ],
+     "language": "python",
+     "prompt_number": 51
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$2 \\log{\\left (x \\right )}$$"
+       ],
+       "text": [
+        "2?log(x)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_log(log(x**2))"
+     ],
+     "language": "python",
+     "prompt_number": 52
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$n \\log{\\left (x \\right )}$$"
+       ],
+       "text": [
+        "n?log(x)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_log(log(x**n))"
+     ],
+     "language": "python",
+     "prompt_number": 53
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\log{\\left (z^{2} \\right )}$$"
+       ],
+       "text": [
+        "   ? 2?\nlog?z ?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_log(log(z**2))"
+     ],
+     "language": "python",
+     "prompt_number": 54
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$2 \\log{\\left (z \\right )}$$"
+       ],
+       "text": [
+        "2?log(z)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_log(log(z**2), force=True)"
+     ],
+     "language": "python",
+     "prompt_number": 55
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\log{\\left (x y \\right )}$$"
+       ],
+       "text": [
+        "log(x?y)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "logcombine(log(x) + log(y))"
+     ],
+     "language": "python",
+     "prompt_number": 12
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$n \\log{\\left (z \\right )}$$"
+       ],
+       "text": [
+        "n?log(z)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "logcombine(n*log(z)) \n",
+      "# doesn't work since z isn't positive and n isn't real"
+     ],
+     "language": "python",
+     "prompt_number": 20
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\log{\\left (z^{n} \\right )}$$"
+       ],
+       "text": [
+        "   ? n?\nlog?z ?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "logcombine(n*log(z), force=True)"
+     ],
+     "language": "python",
+     "prompt_number": 58
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "# SPECIAL FUNCTIONS \n",
+      "\n",
+      "x, y, z = symbols('x y z')\n",
+      "k, m, n = symbols('k m n')"
+     ],
+     "language": "python",
+     "prompt_number": 83
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$n!$$"
+       ],
+       "text": [
+        "n!"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factorial(n)"
+     ],
+     "language": "python",
+     "prompt_number": 60
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "factorial(n + 2)/factorial(n - 1)"
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$${\\binom{n}{k}}$$"
+       ],
+       "text": [
+        "?n?\n? ?\n?k?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "binomial(n, k)"
+     ],
+     "language": "python",
+     "prompt_number": 61
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$10$$"
+       ],
+       "text": [
+        "10"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "binomial(5, 2)"
+     ],
+     "language": "python",
+     "prompt_number": 62
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$3$$"
+       ],
+       "text": [
+        "3"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "binomial(3, 2)"
+     ],
+     "language": "python",
+     "prompt_number": 63
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$295240$$"
+       ],
+       "text": [
+        "295240"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "binomial(122, 3)"
+     ],
+     "language": "python",
+     "prompt_number": 73
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "pyout",
+       "text": [
+        "False"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "gamma(t) == factorial(t - 1)"
+     ],
+     "language": "python",
+     "prompt_number": 74
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$${{}_{2}F_{1}\\left(\\begin{matrix} 1, 2 \\\\ 3 \\end{matrix}\\middle| {z} \\right)}$$"
+       ],
+       "text": [
+        " ??  ?1, 2 ?  ?\n ??  ?     ? z?\n2? 1 ? 3   ?  ?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "#hypergeometric function\n",
+      "hyper([1, 2], [3], z)"
+     ],
+     "language": "python",
+     "prompt_number": 76
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{2 \\sin^{2}{\\left (x \\right )}}{\\sin{\\left (2 x \\right )}}$$"
+       ],
+       "text": [
+        "     2   \n2?sin (x)\n?????????\n sin(2?x)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "tan(x).rewrite(sin)"
+     ],
+     "language": "python",
+     "prompt_number": 78
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\Gamma{\\left(x + 1 \\right)}$$"
+       ],
+       "text": [
+        "?(x + 1)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "factorial(x).rewrite(gamma)"
+     ],
+     "language": "python",
+     "prompt_number": 79
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\Gamma{\\left(z \\right)}$$"
+       ],
+       "text": [
+        "?(z)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "gamma(z).rewrite(factorial)"
+     ],
+     "language": "python",
+     "prompt_number": 80
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x \\left(x + 1\\right) \\left(x + 2\\right) \\Gamma{\\left(x \\right)}$$"
+       ],
+       "text": [
+        "x?(x + 1)?(x + 2)??(x)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "expand_func(gamma(x+3))"
+     ],
+     "language": "python",
+     "prompt_number": 81
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "ename": "TypeError",
+       "evalue": "'FunctionClass' object is not subscriptable",
+       "output_type": "pyerr",
+       "traceback": [
+        "\u001b[1;31m---------------------------------------------------------------------------\u001b[0m\n\u001b[1;31mTypeError\u001b[0m                                 Traceback (most recent call last)",
+        "\u001b[1;32m<ipython-input-84-a7c0f5be17a6>\u001b[0m in \u001b[0;36m<module>\u001b[1;34m()\u001b[0m\n\u001b[1;32m----> 1\u001b[1;33m \u001b[0mhyperexpand\u001b[0m\u001b[1;33m(\u001b[0m\u001b[0mhyper\u001b[0m\u001b[1;33m[\u001b[0m\u001b[1;36m1\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;36m1\u001b[0m\u001b[1;33m]\u001b[0m\u001b[1;33m,\u001b[0m \u001b[1;33m[\u001b[0m\u001b[1;36m2\u001b[0m\u001b[1;33m]\u001b[0m\u001b[1;33m,\u001b[0m \u001b[0mz\u001b[0m\u001b[1;33m)\u001b[0m\u001b[1;33m\u001b[0m\u001b[0m\n\u001b[0m",
+        "\u001b[1;31mTypeError\u001b[0m: 'FunctionClass' object is not subscriptable"
+       ]
+      }
+     ],
+     "input": [
+      "hyperexpand(hyper[1, 1], [2], z)"
+     ],
+     "language": "python",
+     "prompt_number": 84
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$${G_{2, 1}^{1, 1}\\left(\\begin{matrix} 1 & 1 \\\\1 &  \\end{matrix} \\middle| {- z} \\right)}$$"
+       ],
+       "text": [
+        "???1, 1 ?1  1 ?   ?\n???     ?     ? -z?\n???2, 1 ?1    ?   ?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "#also works on the Meijer G-function\n",
+      "expr = meijerg([[1], [1]], [[1], []], -z)\n",
+      "expr"
+     ],
+     "language": "python",
+     "prompt_number": 86
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$e^{\\frac{1}{z}}$$"
+       ],
+       "text": [
+        " 1\n ?\n z\n? "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "hyperexpand(expr)"
+     ],
+     "language": "python",
+     "prompt_number": 87
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$n \\left(n - 2\\right) \\left(n - 1\\right)$$"
+       ],
+       "text": [
+        "n?(n - 2)?(n - 1)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "combsimp(factorial(n)/factorial(n-3))"
+     ],
+     "language": "python",
+     "prompt_number": 88
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{n + 1}{k + 1}$$"
+       ],
+       "text": [
+        "n + 1\n?????\nk + 1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "combsimp(binomial(n+1, k+1)/binomial(n, k))"
+     ],
+     "language": "python",
+     "prompt_number": 89
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{\\pi}{\\sin{\\left (\\pi x \\right )}}$$"
+       ],
+       "text": [
+        "   ?    \n????????\nsin(??x)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "combsimp(gamma(x)*gamma(1-x))"
+     ],
+     "language": "python",
+     "prompt_number": 90
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      "# Convert list of continued fractions into fraction form\n",
+      "\n",
+      "def listToContinuedFraction(list):\n",
+      "    expr = Integer(0)\n",
+      "    for i in reversed(list[1:]):\n",
+      "        expr += i \n",
+      "        expr = 1/expr\n",
+      "    return list[0] + expr"
+     ],
+     "language": "python",
+     "prompt_number": 91
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$x + \\frac{1}{y + \\frac{1}{z + \\frac{1}{k + \\frac{1}{m + \\frac{1}{n + \\frac{1}{t + \\frac{1}{a + \\frac{1}{b}}}}}}}}$$"
+       ],
+       "text": [
+        "                  1              \nx + ?????????????????????????????\n                    1            \n    y + ?????????????????????????\n                      1          \n        z + ?????????????????????\n                        1        \n            k + ?????????????????\n                          1      \n                m + ?????????????\n                            1    \n                    n + ?????????\n                              1  \n                        t + ?????\n                                1\n                            a + ?\n                                b"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "listToContinuedFraction([x, y, z, k, m, n, t, a, b])"
+     ],
+     "language": "python",
+     "prompt_number": 94
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{43}{30}$$"
+       ],
+       "text": [
+        "43\n??\n30"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "#The Integer(0) makes result be sympy object even for ints\n",
+      "listToContinuedFraction([1, 2, 3, 4])"
+     ],
+     "language": "python",
+     "prompt_number": 95
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\begin{pmatrix}a_{0}, & a_{1}, & a_{2}, & a_{3}, & a_{4}\\end{pmatrix}$$"
+       ],
+       "text": [
+        "(a?, a?, a?, a?, a?)"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "syms = symbols('a0:5')\n",
+      "a0, a1, a2, a3, a4 = syms\n",
+      "syms"
+     ],
+     "language": "python",
+     "prompt_number": 103
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$a_{0} + \\frac{1}{a_{1} + \\frac{1}{a_{2} + \\frac{1}{a_{3} + \\frac{1}{a_{4}}}}}$$"
+       ],
+       "text": [
+        "             1        \na? + ?????????????????\n               1      \n     a? + ????????????\n                  1   \n          a? + ???????\n                    1 \n               a? + ??\n                    a?"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "frac = listToContinuedFraction(syms)\n",
+      "frac"
+     ],
+     "language": "python",
+     "prompt_number": 100
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{a_{0} a_{1} a_{2} a_{3} a_{4} + a_{0} a_{1} a_{2} + a_{0} a_{1} a_{4} + a_{0} a_{3} a_{4} + a_{0} + a_{2} a_{3} a_{4} + a_{2} + a_{4}}{a_{1} a_{2} a_{3} a_{4} + a_{1} a_{2} + a_{1} a_{4} + a_{3} a_{4} + 1}$$"
+       ],
+       "text": [
+        "a??a??a??a??a? + a??a??a? + a??a??a? + a??a??a? + a? + a??a??a? + a? + a?\n?????????????????????????????????????????????????????????????????????????\n                 a??a??a??a? + a??a? + a??a? + a??a? + 1                 "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "frac = cancel(frac)\n",
+      "frac"
+     ],
+     "language": "python",
+     "prompt_number": 101
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$a_{0} + \\frac{a_{2} a_{3} a_{4} + a_{2} + a_{4}}{a_{1} a_{2} a_{3} a_{4} + a_{1} a_{2} + a_{1} a_{4} + a_{3} a_{4} + 1}$$"
+       ],
+       "text": [
+        "                a??a??a? + a? + a?          \na? + ???????????????????????????????????????\n     a??a??a??a? + a??a? + a??a? + a??a? + 1"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "list = []\n",
+      "frac = apart(frac, a0)\n",
+      "frac"
+     ],
+     "language": "python",
+     "prompt_number": 106
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "C:\\bin\\Python\\Anaconda3\\lib\\site-packages\\IPython\\core\\formatters.py:239: FormatterWarning: Exception in image/png formatter: \n\\begin{bmatrix}a_{0}, & a_{0}, & a_{0}, & a_{0}\\end{bmatrix}\n^\nUnknown symbol: \\begin (at char 0), (line:1, col:1)\n  FormatterWarning,\n",
+       "text": [
+        "C:\\bin\\Python\\Anaconda3\\lib\\site-packages\\IPython\\core\\formatters.py:239: FormatterWarning: Exception in image/png formatter: \n\\begin{bmatrix}a_{0}, & a_{0}, & a_{0}, & a_{0}\\end{bmatrix}\n^\nUnknown symbol: \\begin (at char 0), (line:1, col:1)\n  FormatterWarning,\n"
+       ]
+      },
+      {
+       "latex": [
+        "$$\\begin{bmatrix}a_{0}, & a_{0}, & a_{0}, & a_{0}\\end{bmatrix}$$"
+       ],
+       "text": [
+        "[a?, a?, a?, a?]"
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "list.append(a0)\n",
+      "list"
+     ],
+     "language": "python",
+     "prompt_number": 110
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [
+      {
+       "latex": [
+        "$$\\frac{1}{a_{2} a_{3} a_{4} + a_{2} + a_{4}} \\left(a_{1} a_{2} a_{3} a_{4} + a_{1} a_{2} + a_{1} a_{4} + a_{3} a_{4} + 1\\right)$$"
+       ],
+       "text": [
+        "a??a??a??a? + a??a? + a??a? + a??a? + 1\n???????????????????????????????????????\n           a??a??a? + a? + a?          "
+       ],
+       "metadata": {}
+      }
+     ],
+     "input": [
+      "frac = 1/(frac - a0)\n",
+      "frac"
+     ],
+     "language": "python",
+     "prompt_number": 111
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python",
+     "prompt_number": 4
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    },
+    {
+     "cell_type": "code",
+     "metadata": {},
+     "outputs": [],
+     "input": [
+      ""
+     ],
+     "language": "python"
+    }
+   ]
+  }
+ ],
+ "cells": [],
+ "metadata": {},
+ "nbformat": 3,
+ "nbformat_minor": 0
+}

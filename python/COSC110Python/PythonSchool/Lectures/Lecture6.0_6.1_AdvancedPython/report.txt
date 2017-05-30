@@ -1,0 +1,4 @@
+Hello, world!
+This is a simple text file that I created!
+Goodbye.
+A number: 4/23/1997
