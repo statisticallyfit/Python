@@ -8,7 +8,6 @@ Output: ratio of happy to unhappy customers to 2 decimal points.
 
 
 
-
 MAX_SEATS = 50
 seatsLeftCount = MAX_SEATS
 onBusCount = 0
@@ -193,7 +192,7 @@ def beginBusRoute(lastStop):
         if not currentStop == lastStop:
             if currentStop == 1:
                 print("\n")
-            print("How many passengers were waiting for the bus at stop #", currentStop, "? ", end="", sep="")
+            print("How many passengers were waiting for the bus at stop #", currentStop, "? ", end='', sep="")
             waitingPassengers = input()
             while not isValidPosIntOrZero(waitingPassengers):
                 print("Invalid number of passengers. Please enter a positive integer.")
